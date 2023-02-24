@@ -3,6 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.routerUser = void 0;
 const express_1 = require("express");
 const ConttrollerUsers_1 = require("../controllers/ConttrollerUsers");
+const connect_1 = require("../connect");
+connect_1.client.connect();
 const routerUser = (0, express_1.Router)();
 exports.routerUser = routerUser;
 const conttrollersUSers = new ConttrollerUsers_1.ConttrollersUSers();

@@ -9,11 +9,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ConttrollersProducts = exports.client = void 0;
-const Client = require('pg').Client;
-const config = require('../../.env');
-exports.client = new Client(config.pg);
-exports.client.connect();
+exports.ConttrollersProducts = void 0;
+const connect_1 = require("../connect");
 class ConttrollersProducts {
     index(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -31,7 +28,7 @@ class ConttrollersProducts {
             try {
                 let id = 0;
                 console.log("starting the search !!");
-                const resultado = yield exports.client.query("SELECT * FROM products WHERE id_product > '" + id + "'");
+                const resultado = yield connect_1.client.query("SELECT * FROM products WHERE id_product > '" + id + "'");
                 const result = resultado.rows;
                 const products = result;
                 response.json(products);
@@ -50,9 +47,9 @@ class ConttrollersProducts {
                 const product = [];
                 const { name, val_max, val_min, brand, sector, bar_code } = request.body;
                 product.push({ name, val_max, val_min, brand, sector, bar_code });
-                yield exports.client.query('INSERT INTO products("descric_product", "val_max_product", "val_min_product", "fk_brand", "fk_sector", "bar_code") VALUES (' + "'" + product[0].name + "', '" + product[0].val_max + "', '" + product[0].val_min + "', '" + product[0].brand + "', '" + product[0].sector + "', '" + product[0].bar_code + "');");
+                yield connect_1.client.query('INSERT INTO products("descric_product", "val_max_product", "val_min_product", "fk_brand", "fk_sector", "bar_code") VALUES (' + "'" + product[0].name + "', '" + product[0].val_max + "', '" + product[0].val_min + "', '" + product[0].brand + "', '" + product[0].sector + "', '" + product[0].bar_code + "');");
                 console.log("Product(s) inserted in the Table !!");
-                const result = yield exports.client.query("SELECT descric_product FROM products WHERE descric_product = '" + product[0].name + "' LIMIT(1)");
+                const result = yield connect_1.client.query("SELECT descric_product FROM products WHERE descric_product = '" + product[0].name + "' LIMIT(1)");
                 console.log('This is new Product: ', result.rows);
                 response.json("Product Register Success !!");
             }

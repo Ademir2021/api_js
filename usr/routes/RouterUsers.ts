@@ -1,5 +1,7 @@
 import { json, response, Router } from "express"
 import { ConttrollersUSers } from "../controllers/ConttrollerUsers";
+import { client } from "../connect"
+client.connect()
 
 const routerUser = Router();
 const conttrollersUSers = new ConttrollersUSers()

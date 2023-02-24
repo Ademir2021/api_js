@@ -9,7 +9,7 @@ const RouterProducts_1 = require("./routes/RouterProducts");
 const RouterSales_1 = require("./routes/RouterSales");
 const cors = require('cors');
 const app = (0, express_1.default)();
-const PORT = 3002 || 3005;
+const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express_1.default.json());
 app.use(RouterUsers_1.routerUser);

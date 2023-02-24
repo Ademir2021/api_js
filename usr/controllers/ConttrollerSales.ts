@@ -1,10 +1,5 @@
 import { Request, Response } from "express"
-import { IItensSale } from '../interfaces/ISale';
-const Client = require('pg').Client;
-const config  = require ('../../.env')
-export const client = new Client(config.pg);
-
-client.connect()
+import { client } from "../connect"
 
 export class ConttrollersSales{
 

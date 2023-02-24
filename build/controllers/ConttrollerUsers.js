@@ -9,11 +9,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ConttrollersUSers = exports.client = void 0;
-const Client = require('pg').Client;
-const config = require('../../.env');
-exports.client = new Client(config.pg);
-exports.client.connect();
+exports.ConttrollersUSers = void 0;
+const connect_1 = require("../connect");
 class ConttrollersUSers {
     index(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -31,7 +28,7 @@ class ConttrollersUSers {
             try {
                 let id = 0;
                 console.log("starting the search !!");
-                const resultado = yield exports.client.query("SELECT * FROM users WHERE id > '" + id + "'");
+                const resultado = yield connect_1.client.query("SELECT * FROM users WHERE id > '" + id + "'");
                 const result = resultado.rows;
                 const users = result;
                 response.json(users);
@@ -50,9 +47,9 @@ class ConttrollersUSers {
                 const user = [];
                 const { name, username, password } = request.body;
                 user.push({ name, username, password });
-                yield exports.client.query('INSERT INTO users("name", "username", "password") VALUES (' + "'" + user[0].name + "', '" + user[0].username + "', '" + user[0].password + "');");
+                yield connect_1.client.query('INSERT INTO users("name", "username", "password") VALUES (' + "'" + user[0].name + "', '" + user[0].username + "', '" + user[0].password + "');");
                 console.log("User(s) inserted in the Table !!");
-                const result = yield exports.client.query("SELECT name FROM users WHERE name = '" + user[0].name + "' LIMIT(1)");
+                const result = yield connect_1.client.query("SELECT name FROM users WHERE name = '" + user[0].name + "' LIMIT(1)");
                 console.log('This is new Person: ', result.rows);
                 response.json("User Register Success !!");
             }

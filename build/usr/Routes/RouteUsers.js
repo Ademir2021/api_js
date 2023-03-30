@@ -12,5 +12,5 @@ routeUser.get('/', conttrollersUSers.index);
 routeUser.get('/login/:username', conttrollersUSers.login);
 routeUser.get('/users', conttrollersUSers.select);
 routeUser.post('/users', conttrollersUSers.insert);
-routeUser.post('/users', conttrollersUSers.update);
-routeUser.post('/users', conttrollersUSers.delete);
+routeUser.put('/users/:id', conttrollersUSers.update);
+routeUser.delete('/users/:id', conttrollersUSers.delete);

@@ -73,10 +73,13 @@ class ConttrollersUSers {
     update(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                /** */
+                const id = request.params.id;
+                const { name, username, password } = request.body;
+                yield connect_1.client.query("UPDATE users SET name = '" + name + "', username = '" + username + "', password= '" + password + "' WHERE id = '" + id + "';");
+                response.json("Update com sucess!!: ");
             }
-            catch (ex) {
-                console.log("Erro Ocorred");
+            catch (err) {
+                response.json("Erro Ocorred !!: " + err);
             }
         });
     }
@@ -84,7 +87,9 @@ class ConttrollersUSers {
     delete(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                /** */
+                const id = request.params.id;
+                yield connect_1.client.query("DELETE FROM users WHERE id = '" + id + "';");
+                response.json("user removido da tabela");
             }
             catch (ex) {
                 console.log("Erro Ocorred");

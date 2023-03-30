@@ -4,7 +4,7 @@
   "description": "api js com typescript",
   "main": "./usr/server.ts",
   "scripts": {
-    "start": "node build/server.js"
+    "start": "node build/usr/server.js"
   },
   "author": "Ademir Souza de Almeida",
   "license": "ISC",

@@ -45,18 +45,21 @@ export class ConttrollersUSers {
             response.json("Erro: " + err)
         }
     };
-
     async update(request: Request, response: Response) {
         try {
-            /** */
-        } catch (ex) {
-            console.log("Erro Ocorred")
+            const id = request.params.id
+            const { name, username, password } = <IUser>request.body
+            await client.query("UPDATE users SET name = '" + name + "', username = '" + username + "', password= '" + password + "' WHERE id = '" + id + "';")
+            response.json("Update com sucess!!: ")
+        } catch (err) {
+            response.json("Erro Ocorred !!: " + err)
         }
     };
-
     async delete(request: Request, response: Response) {
         try {
-            /** */
+            const id = request.params.id
+            await client.query("DELETE FROM users WHERE id = '" + id + "';")
+            response.json("user removido da tabela")
         } catch (ex) {
             console.log("Erro Ocorred")
         }

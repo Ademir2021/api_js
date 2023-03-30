@@ -5,7 +5,8 @@
 - Para instalar o projeto digite `npm i`.
 
 # DIRS
-- controlles [x]
+- controlles [?]
+- providers/pg [x]
 - interfaces [x]
 - entities []
 - routes [x]
@@ -22,7 +23,8 @@
 
 # dependencies
 - express ok
-- nodemon ok 
+- nodemon ok
+- ts-node ok
 - pg ok
 - cors ok
 - dotenv ok
@@ -32,7 +34,7 @@
 - @types/express
 
 # start
-`"start": "node build/server.js`
+`"start": "node build/usr/server.js"`
 
 # Integrção com o heroku
 - install ubuntu/debian apt-get

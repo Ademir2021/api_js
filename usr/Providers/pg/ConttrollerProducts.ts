@@ -10,7 +10,6 @@ export class ConttrollersProducts {
             console.log("Error Occurred !!")
         }
     };
-
     async select(request: Request, response: Response) {
         try {
             let id = 0
@@ -20,7 +19,6 @@ export class ConttrollersProducts {
             console.log(err)
         }
     };
-
     async insert(request: Request, response: Response) {
         try {
             const { name, val_max, val_min, brand, sector, bar_code }: IProduct = <IProduct>request.body
@@ -37,20 +35,23 @@ export class ConttrollersProducts {
             console.log(err)
         }
     };
-
     async update(request: Request, response: Response) {
         try {
-            /** */
-        } catch (ex) {
+            const id = request.params.id
+            const {name: descric_product, val_max, val_min, brand, sector, bar_code }: IProduct = <IProduct>request.body
+            await client.query("UPDATE products SET descric_product = '" + descric_product + "', val_max_product = '" + val_max + "', val_min_product ='" + val_min + "', fk_brand = '" + brand + "', fk_sector = '" + sector + "', bar_code = '" + bar_code + "' WHERE id_product = '" + id + "'")
+            response.json("Update com sucess !!")
+        } catch (err) {
             console.log("Erro Ocorred")
         }
     };
-
     async delete(request: Request, response: Response) {
         try {
-            /** */
-        } catch (ex) {
-            console.log("Erro Ocorred")
+            const id = request.params.id
+            await client.query("DELETE FROM products WHERE id_product = '" + id + "'")
+            response.json("Produto removido da tabela")
+        } catch (err) {
+            response.json("Error Ocorred !!" + err)
         }
     };
 }

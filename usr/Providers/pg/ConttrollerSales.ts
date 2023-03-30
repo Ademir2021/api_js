@@ -11,7 +11,6 @@ export class ConttrollersSales {
             console.log(error, "Error Occurred !!")
         }
     };
-
     async select(request: Request, response: Response) {
         try {
             let id = 0
@@ -26,11 +25,10 @@ export class ConttrollersSales {
             console.log("successful search !!")
             console.log(itens_sale)
 
-        } catch (error) {
-            console.log(error, "Error Occurred !!")
+        } catch (err) {
+            console.log("Error Occurred!! :"+ err)
         }
     };
-
     async insert(request: Request, response: Response) {
         try {
             const itens: TItens = <TItens>request.body   

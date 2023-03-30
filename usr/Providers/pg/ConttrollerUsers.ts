@@ -13,7 +13,7 @@ export class ConttrollersUSers {
     };
     async login(request: Request, response: Response) {
         try {
-            const { username }: ILogin = <any>request.params
+            const username: ILogin = <any>request.params
             const res = await client.query("SELECT username, password FROM users WHERE username = '" + username + "' LIMIT(1)")
             response.json(res.rows);
         } catch (err) {
@@ -23,7 +23,7 @@ export class ConttrollersUSers {
     async select(request: Request, response: Response) {
         try {
             let id = 0
-            const res = await client.query("SELECT *FROM users WHERE id > '" + id + "'")
+            const res = await client.query("SELECT *FROM users WHERE id > '" + id + "';")
             response.json(res.rows);
         } catch (err) {
             console.log("Error!!" + err)
@@ -32,7 +32,7 @@ export class ConttrollersUSers {
     async insert(request: Request, response: Response) {
         try {
             const { name, username, password } = <IUser>request.body
-            const res_username = await client.query("SELECT username FROM users WHERE username = '" + username + "' LIMIT(1)")
+            const res_username = await client.query("SELECT username FROM users WHERE username = '" + username + "' LIMIT(1);")
             try {
                 username !== res_username.rows[0].username
                 response.json("Email já cadastrado: " + username)
@@ -42,28 +42,27 @@ export class ConttrollersUSers {
                 response.json("Registro com Successo: " + res_name.rows[0].name)
             }
         } catch (err) {
-            response.json("Erro: " + err)
+            response.json("Error: " + err)
         }
     };
     async update(request: Request, response: Response) {
         try {
             const id = request.params.id
             const { name, username, password } = <IUser>request.body
-            await client.query("UPDATE users SET name = '" + name + "', username = '" + username + "', password= '" + password + "' WHERE id = '" + id + "';")
-            response.json("Update com sucess!!: ")
+            await client.query("UPDATE users SET name = '" + name + "', username = '" + username + "', password ='" + password + "' WHERE id = '" + id + "'")
+            response.json("Update com sucess !!")
         } catch (err) {
-            response.json("Erro Ocorred !!: " + err)
+            response.json("Error Ocorred !!: " + err)
         }
     };
     async delete(request: Request, response: Response) {
         try {
             const id = request.params.id
-            await client.query("DELETE FROM users WHERE id = '" + id + "';")
+            await client.query("DELETE FROM users WHERE id = '" + id + "'")
             response.json("user removido da tabela")
-        } catch (ex) {
-            console.log("Erro Ocorred")
+        } catch (err) {
+            console.log("Error Ocorred: " + err)
         }
     };
-
 }
 

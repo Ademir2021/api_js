@@ -26,7 +26,7 @@ class ConttrollersUSers {
     login(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const { username } = request.params;
+                const username = request.params;
                 const res = yield connect_1.client.query("SELECT username, password FROM users WHERE username = '" + username + "' LIMIT(1)");
                 response.json(res.rows);
             }
@@ -40,7 +40,7 @@ class ConttrollersUSers {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 let id = 0;
-                const res = yield connect_1.client.query("SELECT *FROM users WHERE id > '" + id + "'");
+                const res = yield connect_1.client.query("SELECT *FROM users WHERE id > '" + id + "';");
                 response.json(res.rows);
             }
             catch (err) {
@@ -53,7 +53,7 @@ class ConttrollersUSers {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const { name, username, password } = request.body;
-                const res_username = yield connect_1.client.query("SELECT username FROM users WHERE username = '" + username + "' LIMIT(1)");
+                const res_username = yield connect_1.client.query("SELECT username FROM users WHERE username = '" + username + "' LIMIT(1);");
                 try {
                     username !== res_username.rows[0].username;
                     response.json("Email já cadastrado: " + username);
@@ -65,7 +65,7 @@ class ConttrollersUSers {
                 }
             }
             catch (err) {
-                response.json("Erro: " + err);
+                response.json("Error: " + err);
             }
         });
     }
@@ -75,11 +75,11 @@ class ConttrollersUSers {
             try {
                 const id = request.params.id;
                 const { name, username, password } = request.body;
-                yield connect_1.client.query("UPDATE users SET name = '" + name + "', username = '" + username + "', password= '" + password + "' WHERE id = '" + id + "';");
-                response.json("Update com sucess!!: ");
+                yield connect_1.client.query("UPDATE users SET name = '" + name + "', username = '" + username + "', password ='" + password + "' WHERE id = '" + id + "'");
+                response.json("Update com sucess !!");
             }
             catch (err) {
-                response.json("Erro Ocorred !!: " + err);
+                response.json("Error Ocorred !!: " + err);
             }
         });
     }
@@ -88,11 +88,11 @@ class ConttrollersUSers {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const id = request.params.id;
-                yield connect_1.client.query("DELETE FROM users WHERE id = '" + id + "';");
+                yield connect_1.client.query("DELETE FROM users WHERE id = '" + id + "'");
                 response.json("user removido da tabela");
             }
-            catch (ex) {
-                console.log("Erro Ocorred");
+            catch (err) {
+                console.log("Error Ocorred: " + err);
             }
         });
     }

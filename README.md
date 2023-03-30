@@ -5,3 +5,10 @@
 - `Typescript`
 
 - `Integrado com Postgres`
+
+## Entities
+- Users []
+- Poducts []
+- ItensSale []
+- Sale []
+- Persons []

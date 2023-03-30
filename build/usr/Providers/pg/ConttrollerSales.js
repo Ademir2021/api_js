@@ -38,8 +38,8 @@ class ConttrollersSales {
                 console.log("successful search !!");
                 console.log(itens_sale);
             }
-            catch (error) {
-                console.log(error, "Error Occurred !!");
+            catch (err) {
+                console.log("Error Occurred!! :" + err);
             }
         });
     }

@@ -60,9 +60,12 @@ class ConttrollersProducts {
     update(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                /** */
+                const id = request.params.id;
+                const { name: descric_product, val_max, val_min, brand, sector, bar_code } = request.body;
+                yield connect_1.client.query("UPDATE products SET descric_product = '" + descric_product + "', val_max_product = '" + val_max + "', val_min_product ='" + val_min + "', fk_brand = '" + brand + "', fk_sector = '" + sector + "', bar_code = '" + bar_code + "' WHERE id_product = '" + id + "'");
+                response.json("Update com sucess !!");
             }
-            catch (ex) {
+            catch (err) {
                 console.log("Erro Ocorred");
             }
         });
@@ -71,10 +74,12 @@ class ConttrollersProducts {
     delete(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                /** */
+                const id = request.params.id;
+                yield connect_1.client.query("DELETE FROM products WHERE id_product = '" + id + "'");
+                response.json("Produto removido da tabela");
             }
-            catch (ex) {
-                console.log("Erro Ocorred");
+            catch (err) {
+                response.json("Error Ocorred !!" + err);
             }
         });
     }

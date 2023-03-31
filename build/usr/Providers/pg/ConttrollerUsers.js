@@ -26,7 +26,7 @@ class ConttrollersUSers {
     login(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const username = request.params;
+                const { username } = request.params;
                 const res = yield connect_1.client.query("SELECT username, password FROM users WHERE username = '" + username + "' LIMIT(1)");
                 response.json(res.rows);
             }

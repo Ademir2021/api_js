@@ -13,7 +13,7 @@ export class ConttrollersUSers {
     };
     async login(request: Request, response: Response) {
         try {
-            const username: ILogin = <any>request.params
+            const { username } = request.params
             const res = await client.query("SELECT username, password FROM users WHERE username = '" + username + "' LIMIT(1)")
             response.json(res.rows);
         } catch (err) {

@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.routePerson = void 0;
+const express_1 = require("express");
+const ConttrollerPersons_1 = require("../Providers/pg/ConttrollerPersons");
+const routePerson = (0, express_1.Router)();
+exports.routePerson = routePerson;
+const conttrollersPersons = new ConttrollerPersons_1.ConttrollersPersons();
+routePerson.get('/', conttrollersPersons.index);
+routePerson.get('/persons', conttrollersPersons.select);
+routePerson.post('/persons', conttrollersPersons.insert);
+routePerson.put('/persons/:id', conttrollersPersons.update);
+routePerson.delete('/persons/:id', conttrollersPersons.delete);

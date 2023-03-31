@@ -9,5 +9,5 @@ const conttrollersProducts = new ConttrollerProducts_1.ConttrollersProducts();
 routeProduct.get('/', conttrollersProducts.index);
 routeProduct.get('/products', conttrollersProducts.select);
 routeProduct.post('/products', conttrollersProducts.insert);
-routeProduct.put('/products/:id', conttrollersProducts.insert);
-routeProduct.delete('/products/:id', conttrollersProducts.insert);
+routeProduct.put('/products/:id', conttrollersProducts.update);
+routeProduct.delete('/products/:id', conttrollersProducts.delete);

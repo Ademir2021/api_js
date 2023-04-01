@@ -50,15 +50,15 @@ class ConttrollersPersons {
     insert(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const _a = request.body, { cpf } = _a, rest = __rest(_a, ["cpf"]);
-                const res_cpf = yield connect_1.client.query("SELECT cpf_pers FROM persons WHERE cpf_pers = '" + cpf + "' LIMIT(1)");
+                const rest = __rest(request.body, []);
+                const res_cpf = yield connect_1.client.query("SELECT cpf_pers FROM persons WHERE cpf_pers = '" + rest.cpf_pers + "' LIMIT(1)");
                 try {
-                    cpf !== res_cpf.rows[0].cpf_pers;
-                    response.json("CPF pertence a outra Pessoa !! :" + cpf);
+                    rest.cpf_pers !== res_cpf.rows[0].cpf_pers;
+                    response.json("CPF pertence a outra Pessoa !! :" + rest.cpf_pers);
                 }
-                catch (_b) {
-                    yield connect_1.client.query('INSERT INTO persons("name_pers", "cpf_pers", "address_pers", "fk_name_filial") VALUES (' + "'" + rest.name + "', '" + cpf + "', '" + rest.address + "', '" + rest.filial + "');");
-                    const res = yield connect_1.client.query("SELECT name_pers FROM persons WHERE name_pers = '" + rest.name + "' LIMIT(1)");
+                catch (_a) {
+                    yield connect_1.client.query('INSERT INTO persons("name_pers", "cpf_pers", "address_pers", "fk_name_filial") VALUES (' + "'" + rest.name_pers + "', '" + rest.cpf_pers + "', '" + rest.address_pers + "', '" + rest.fk_name_filial + "');");
+                    const res = yield connect_1.client.query("SELECT name_pers FROM persons WHERE name_pers = '" + rest.name_pers + "' LIMIT(1)");
                     response.json("Pessoa registrada: " + res.rows[0].name_pers);
                 }
             }
@@ -72,12 +72,12 @@ class ConttrollersPersons {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const id = request.params.id;
-                const _a = request.body, { cpf } = _a, rest = __rest(_a, ["cpf"]);
-                yield connect_1.client.query("UPDATE persons SET name_pers = '" + rest.name + "', cpf_pers = '" + cpf + "', address_pers ='" + rest.address + "', fk_name_filial = '" + rest.filial + "' WHERE id_product = '" + id + "'");
+                const rest = __rest(request.body, []);
+                yield connect_1.client.query("UPDATE persons SET name_pers = '" + rest.name_pers + "', cpf_pers = '" + rest.cpf_pers + "', address_pers ='" + rest.address_pers + "', fk_name_filial = '" + rest.fk_name_filial + "' WHERE id_person = '" + id + "'");
                 response.json("Update com sucess !!");
             }
             catch (err) {
-                console.log("Erro Ocorred");
+                console.log("Erro Ocorred", err);
             }
         });
     }
@@ -86,7 +86,7 @@ class ConttrollersPersons {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const id = request.params.id;
-                yield connect_1.client.query("DELETE FROM persons WHERE id_product = '" + id + "'");
+                yield connect_1.client.query("DELETE FROM persons WHERE id_person = '" + id + "'");
                 response.json("Produto removido da tabela");
             }
             catch (err) {

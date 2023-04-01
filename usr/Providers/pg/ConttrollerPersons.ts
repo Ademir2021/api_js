@@ -21,14 +21,14 @@ export class ConttrollersPersons {
     };
     async insert(request: Request, response: Response) {
         try {
-            const { cpf, ...rest }: IPerson = <IPerson>request.body
-            const res_cpf = await client.query("SELECT cpf_pers FROM persons WHERE cpf_pers = '" + cpf + "' LIMIT(1)")
+            const { ...rest}: IPerson = <IPerson>request.body
+            const res_cpf = await client.query("SELECT cpf_pers FROM persons WHERE cpf_pers = '" + rest.cpf_pers + "' LIMIT(1)")
             try {
-                cpf !== res_cpf.rows[0].cpf_pers
-                response.json("CPF pertence a outra Pessoa !! :" + cpf)
+                rest.cpf_pers !== res_cpf.rows[0].cpf_pers
+                response.json("CPF pertence a outra Pessoa !! :" + rest.cpf_pers)
             } catch {
-                await client.query('INSERT INTO persons("name_pers", "cpf_pers", "address_pers", "fk_name_filial") VALUES (' + "'" + rest.name + "', '" + cpf + "', '" + rest.address + "', '" + rest.filial + "');")
-                const res = await client.query("SELECT name_pers FROM persons WHERE name_pers = '" + rest.name + "' LIMIT(1)")
+                await client.query('INSERT INTO persons("name_pers", "cpf_pers", "address_pers", "fk_name_filial") VALUES (' + "'" + rest.name_pers + "', '" + rest.cpf_pers + "', '" + rest.address_pers + "', '" + rest.fk_name_filial+ "');")
+                const res = await client.query("SELECT name_pers FROM persons WHERE name_pers = '" + rest.name_pers + "' LIMIT(1)")
                 response.json("Pessoa registrada: " + res.rows[0].name_pers)
             }
         } catch (err) {
@@ -38,17 +38,17 @@ export class ConttrollersPersons {
     async update(request: Request, response: Response) {
         try {
             const id = request.params.id
-            const { cpf, ...rest }: IPerson = <IPerson>request.body
-            await client.query("UPDATE persons SET name_pers = '" + rest.name + "', cpf_pers = '" + cpf + "', address_pers ='" + rest.address + "', fk_name_filial = '" + rest.filial + "' WHERE id_product = '" + id + "'")
+            const { ...rest }: IPerson = <IPerson>request.body
+            await client.query("UPDATE persons SET name_pers = '" + rest.name_pers + "', cpf_pers = '" + rest.cpf_pers+ "', address_pers ='" + rest.address_pers + "', fk_name_filial = '" + rest.fk_name_filial + "' WHERE id_person = '" + id + "'")
             response.json("Update com sucess !!")
         } catch (err) {
-            console.log("Erro Ocorred")
+            console.log("Erro Ocorred", err)
         }
     };
     async delete(request: Request, response: Response) {
         try {
             const id = request.params.id
-            await client.query("DELETE FROM persons WHERE id_product = '" + id + "'")
+            await client.query("DELETE FROM persons WHERE id_person = '" + id + "'")
             response.json("Produto removido da tabela")
         } catch (err) {
             response.json("Error Ocorred !!" + err)

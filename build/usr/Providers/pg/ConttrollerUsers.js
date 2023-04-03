@@ -17,8 +17,8 @@ class ConttrollersUSers {
             try {
                 response.status(200).json({ status: 'sucesss' });
             }
-            catch (ex) {
-                console.log("Error Occurred !!");
+            catch (err) {
+                console.log("Error Occurred !!" + err);
             }
         });
     }
@@ -27,11 +27,11 @@ class ConttrollersUSers {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const { username } = request.params;
-                const res = yield connect_1.client.query("SELECT username, password FROM users WHERE username = '" + username + "' LIMIT(1)");
+                const res = yield connect_1.client.query("SELECT id, username, password FROM users WHERE username = '" + username + "' LIMIT(1)");
                 response.json(res.rows);
             }
             catch (err) {
-                response.json("Error!!" + err);
+                response.json("Error Occurred !!" + err);
             }
         });
     }
@@ -44,7 +44,7 @@ class ConttrollersUSers {
                 response.json(res.rows);
             }
             catch (err) {
-                console.log("Error!!" + err);
+                console.log("Error Occurred !!" + err);
             }
         });
     }
@@ -65,7 +65,7 @@ class ConttrollersUSers {
                 }
             }
             catch (err) {
-                response.json("Error: " + err);
+                response.json("Error Occurred !!" + err);
             }
         });
     }

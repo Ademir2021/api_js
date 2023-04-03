@@ -17,8 +17,8 @@ class ConttrollersProducts {
             try {
                 response.status(200).json({ status: 'sucesss' });
             }
-            catch (ex) {
-                console.log("Error Occurred !!");
+            catch (err) {
+                console.log("Error Occurred !!" + err);
             }
         });
     }
@@ -31,7 +31,7 @@ class ConttrollersProducts {
                 response.json(res.rows);
             }
             catch (err) {
-                console.log(err);
+                console.log("Error Occurred !!" + err);
             }
         });
     }
@@ -52,7 +52,7 @@ class ConttrollersProducts {
                 }
             }
             catch (err) {
-                console.log(err);
+                console.log("Error Occurred !!" + err);
             }
         });
     }
@@ -66,7 +66,7 @@ class ConttrollersProducts {
                 response.json("Update com sucess !!");
             }
             catch (err) {
-                console.log("Erro Ocorred");
+                console.log("Error Occurred !!" + err);
             }
         });
     }

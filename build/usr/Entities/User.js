@@ -11,7 +11,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.User = void 0;
 const connect_1 = require("../connect");
-//import { IUser } from '../Interfaces/IUser';
 class User {
     constructor(id, name, username, password) {
         this._id = id;

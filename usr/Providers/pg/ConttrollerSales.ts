@@ -7,8 +7,8 @@ export class ConttrollersSales {
     async index(request: Request, response: Response) {
         try {
             response.status(200).json({ status: 'sucesss' })
-        } catch (error) {
-            console.log(error, "Error Occurred !!")
+        } catch (err) {
+            console.log(err, "Error Occurred !! :" + err)
         }
     };
     async select(request: Request, response: Response) {
@@ -26,12 +26,12 @@ export class ConttrollersSales {
             console.log(itens_sale)
 
         } catch (err) {
-            console.log("Error Occurred!! :"+ err)
+            console.log("Error Occurred !! :" + err)
         }
     };
     async insert(request: Request, response: Response) {
         try {
-            const itens: TItens = <TItens>request.body   
+            const itens: TItens = <TItens>request.body
             console.log("Consulting the last sale");
             const res_num_sale = await client.query("SELECT MAX(id_sale) FROM sales;");
             let id: number = res_num_sale.rows[0].max;
@@ -51,12 +51,12 @@ export class ConttrollersSales {
             let sub_total_sale: number = 0
             sub_total_sale = res_total_itens.rows[0].total
             let total_sale: number = sub_total_sale - itens[0].disc_sale
-            await client.query('INSERT INTO sales("fk_name_pers", "val_rec", "disc_sale", "total_sale") VALUES (' + "'" + itens[0].fk_name_pers + "', '" + sub_total_sale + "', '" + itens[0].disc_sale + "', '" + total_sale + "');");
+            await client.query('INSERT INTO sales("fk_name_pers", "val_rec", "disc_sale", "total_sale", fk_name_filial, fk_name_user) VALUES (' + "'" + itens[0].fk_name_pers + "', '" + sub_total_sale + "', '" + itens[0].disc_sale + "', '" + total_sale + "', '" + itens[0].filial + "', '" + itens[0].user_id + "');");
             const res_sale = await client.query("SELECT *FROM sales WHERE id_sale = '" + num_sale + "'")
             console.table(res_sale.rows)
             response.json("Sale Register Success !!")
-        } catch (error) {
-            console.log(error, "Error Occurred !!")
+        } catch (err) {
+            console.log("Error Occurred !! :" + err)
         }
     };
 }

@@ -7,17 +7,17 @@ export class ConttrollersUSers {
     async index(request: Request, response: Response) {
         try {
             response.status(200).json({ status: 'sucesss' })
-        } catch (ex) {
-            console.log("Error Occurred !!")
+        } catch (err) {
+            console.log("Error Occurred !!" + err)
         }
     };
     async login(request: Request, response: Response) {
         try {
             const { username } = request.params
-            const res = await client.query("SELECT username, password FROM users WHERE username = '" + username + "' LIMIT(1)")
+            const res = await client.query("SELECT id, username, password FROM users WHERE username = '" + username + "' LIMIT(1)")
             response.json(res.rows);
         } catch (err) {
-            response.json("Error!!" + err)
+            response.json("Error Occurred !!" + err)
         }
     };
     async select(request: Request, response: Response) {
@@ -26,7 +26,7 @@ export class ConttrollersUSers {
             const res = await client.query("SELECT *FROM users WHERE id > '" + id + "';")
             response.json(res.rows);
         } catch (err) {
-            console.log("Error!!" + err)
+            console.log("Error Occurred !!" + err)
         }
     };
     async insert(request: Request, response: Response) {
@@ -42,7 +42,7 @@ export class ConttrollersUSers {
                 response.json("Registro com Successo: " + res_name.rows[0].name)
             }
         } catch (err) {
-            response.json("Error: " + err)
+            response.json("Error Occurred !!" + err)
         }
     };
     async update(request: Request, response: Response) {

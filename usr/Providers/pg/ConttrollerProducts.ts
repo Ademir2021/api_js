@@ -6,8 +6,8 @@ export class ConttrollersProducts {
     async index(request: Request, response: Response) {
         try {
             response.status(200).json({ status: 'sucesss' })
-        } catch (ex) {
-            console.log("Error Occurred !!")
+        } catch (err) {
+            console.log("Error Occurred !!" + err)
         }
     };
     async select(request: Request, response: Response) {
@@ -16,7 +16,7 @@ export class ConttrollersProducts {
             const res = await client.query("SELECT * FROM products WHERE id_product > '" + id + "'")
             response.json(res.rows);
         } catch (err) {
-            console.log(err)
+            console.log("Error Occurred !!" + err)
         }
     };
     async insert(request: Request, response: Response) {
@@ -32,7 +32,7 @@ export class ConttrollersProducts {
                 response.json("Produto registrado: " + res.rows[0].descric_product)
             }
         } catch (err) {
-            console.log(err)
+            console.log("Error Occurred !!" + err)
         }
     };
     async update(request: Request, response: Response) {
@@ -42,7 +42,7 @@ export class ConttrollersProducts {
             await client.query("UPDATE products SET descric_product = '" + descric_product + "', val_max_product = '" + val_max_product + "', val_min_product ='" + val_min_product + "', fk_brand = '" + fk_brand + "', fk_sector = '" + fk_sector + "', bar_code = '" + bar_code + "' WHERE id_product = '" + id + "'")
             response.json("Update com sucess !!")
         } catch (err) {
-            console.log("Erro Ocorred")
+            console.log("Error Occurred !!" + err)
         }
     };
     async delete(request: Request, response: Response) {

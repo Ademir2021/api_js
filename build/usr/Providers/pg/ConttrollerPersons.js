@@ -42,7 +42,7 @@ class ConttrollersPersons {
                 response.json(res.rows);
             }
             catch (err) {
-                console.log(err);
+                console.log("Error Occurred !!: " + err);
             }
         });
     }
@@ -63,7 +63,7 @@ class ConttrollersPersons {
                 }
             }
             catch (err) {
-                console.log(err);
+                console.log("Error Occurred !!: " + err);
             }
         });
     }

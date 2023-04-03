@@ -1,6 +1,5 @@
 import { Request, Response } from "express"
 import { client } from "../connect"
-//import { IUser } from '../Interfaces/IUser';
 
 export class User {
     private _id: number;

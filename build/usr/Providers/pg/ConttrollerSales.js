@@ -17,8 +17,8 @@ class ConttrollersSales {
             try {
                 response.status(200).json({ status: 'sucesss' });
             }
-            catch (error) {
-                console.log(error, "Error Occurred !!");
+            catch (err) {
+                console.log(err, "Error Occurred !! :" + err);
             }
         });
     }
@@ -39,7 +39,7 @@ class ConttrollersSales {
                 console.log(itens_sale);
             }
             catch (err) {
-                console.log("Error Occurred!! :" + err);
+                console.log("Error Occurred !! :" + err);
             }
         });
     }
@@ -67,15 +67,13 @@ class ConttrollersSales {
                 let sub_total_sale = 0;
                 sub_total_sale = res_total_itens.rows[0].total;
                 let total_sale = sub_total_sale - itens[0].disc_sale;
-                let filial = 1;
-                let user = 114;
                 yield connect_1.client.query('INSERT INTO sales("fk_name_pers", "val_rec", "disc_sale", "total_sale", fk_name_filial, fk_name_user) VALUES (' + "'" + itens[0].fk_name_pers + "', '" + sub_total_sale + "', '" + itens[0].disc_sale + "', '" + total_sale + "', '" + itens[0].filial + "', '" + itens[0].user_id + "');");
                 const res_sale = yield connect_1.client.query("SELECT *FROM sales WHERE id_sale = '" + num_sale + "'");
                 console.table(res_sale.rows);
                 response.json("Sale Register Success !!");
             }
-            catch (error) {
-                console.log(error, "Error Occurred !!");
+            catch (err) {
+                console.log("Error Occurred !! :" + err);
             }
         });
     }

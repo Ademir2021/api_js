@@ -75,7 +75,7 @@ class ConttrollersUSers {
             try {
                 const id = request.params.id;
                 const { name, username, password } = request.body;
-                yield connect_1.client.query("UPDATE users SET name = '" + name + "', username = '" + username + "', password ='" + password + "' WHERE id = '" + id + "'");
+                yield connect_1.client.query("UPDATE users SET name = '" + name + "', username = '" + username + "', password = '" + password + "' WHERE id = '" + id + "'");
                 response.json("Update com sucess !!");
             }
             catch (err) {

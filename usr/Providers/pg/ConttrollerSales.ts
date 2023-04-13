@@ -54,7 +54,7 @@ export class ConttrollersSales {
             await client.query('INSERT INTO sales("fk_name_pers", "val_rec", "disc_sale", "total_sale", fk_name_filial, fk_name_user) VALUES (' + "'" + itens[0].fk_name_pers + "', '" + sub_total_sale + "', '" + itens[0].disc_sale + "', '" + total_sale + "', '" + itens[0].filial + "', '" + itens[0].user_id + "');");
             const res_sale = await client.query("SELECT *FROM sales WHERE id_sale = '" + num_sale + "'")
             console.table(res_sale.rows)
-            response.json("Sale Register Success !!")
+            response.json(num_sale)
         } catch (err) {
             console.log("Error Occurred !! :" + err)
         }

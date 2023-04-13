@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.routeNote = void 0;
+const express_1 = require("express");
+const ConttrollerNotes_1 = require("../Providers/pg/ConttrollerNotes");
+const routeNote = (0, express_1.Router)();
+exports.routeNote = routeNote;
+const conttrollersNotes = new ConttrollerNotes_1.ConttrollersNotes();
+routeNote.get('/', conttrollersNotes.index);
+routeNote.get('/note/:num_nota', conttrollersNotes.select);

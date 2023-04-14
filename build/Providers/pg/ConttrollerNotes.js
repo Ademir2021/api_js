@@ -56,11 +56,11 @@ class ConttrollersNotes {
                 const body = [];
                 const columnsTitle = [
                     { text: "Item", style: "columnsTitle" },
-                    { text: "Descrição", style: "columnsTitle" },
+                    { text: "Descrição Produtos", style: "columnsTitle" },
                     { text: "Marca", style: "columnsTitle" },
                     { text: "Quant", style: "columnsTitle" },
-                    { text: "valor", style: "columnsTitle" },
-                    { text: "Total", style: "columnsTitle" },
+                    { text: "Valor Unit", style: "columnsTitle" },
+                    { text: "Total Item", style: "columnsTitle" },
                 ];
                 const columnsBody = new Array();
                 columnsTitle.forEach(column => columnsBody.push(column));
@@ -77,9 +77,10 @@ class ConttrollersNotes {
                 }
                 const img = {
                     image: 'logo.png',
-                    width: 100,
-                    height: 100,
-                    opacity: 0.5
+                    width: 136,
+                    height: 48,
+                    opacity: 0.9,
+                    margin: 2,
                 };
                 const fonts = {
                     Helvetica: {
@@ -99,23 +100,24 @@ class ConttrollersNotes {
                                 heights: function (row) {
                                     return 10;
                                 },
-                                widths: ["auto", 170, 120, 100],
+                                widths: ["auto", 120, 120, 100],
                                 body: [
                                     [
                                         img,
-                                        `\n${filial}\n
-                                     Avenida Castro Alves, 1241\n
-                                     Barbosa Ferraz - PR.\n
-                                     CEP 86960-000\n
-                                     Telefone (44) 98852-1033\n\n`,
-                                        `\nNota de Venda\n Nº 000${nota}
-                                     \nEspécie\n[PE]\n`,
-                                        `\nEmitida\n\n${emitida}\n`,
+                                        `${filial}
+                                     CNPJ: 18.069.383/0001-10
+                                     Avenida Castro Alves, 1241
+                                     Barbosa Ferraz - PR.
+                                     CEP: 86960-000
+                                     Telefone (44) 98852-1033\n`,
+                                        `Nota de Venda\n Nº 000${nota}
+                                     \nEspécie\n[PE]`,
+                                        `Emitida\n${emitida}`,
                                     ]
                                 ]
                             }
                         },
-                        { text: '\nCLIENTE/DESTINATARIO', style: 'title' },
+                        { text: '\nCLIENTE/DESTINATÁRIO', style: 'title' },
                         {
                             style: 'columnsPerson',
                             table: {
@@ -131,7 +133,7 @@ class ConttrollersNotes {
                             }
                         },
                         {
-                            text: `\n\n DADOS PRODUTOS/SERVIÇO`, style: "title"
+                            text: `\n\n DADOS PRODUTOS/SERVIÇOS`, style: "title"
                         },
                         {
                             style: 'columnsNota',
@@ -139,7 +141,7 @@ class ConttrollersNotes {
                                 heights: function (row) {
                                     return 10;
                                 },
-                                widths: [30, 236, 75, 40, 55, 58,],
+                                widths: [30, "auto", 70, 40, 56, 58,],
                                 body
                             },
                         },
@@ -150,10 +152,10 @@ class ConttrollersNotes {
                                 // heights: ["*"],
                                 widths: ['*', '*', '*', 100],
                                 body: [
-                                    [`Produto/Serviço\nR$ ${val_rec}`,
+                                    [`Produtos/Serviços\nR$ ${val_rec}`,
                                         `Desconto/Produtos\nR$ ${desc_venda}`,
                                         `Total Recebido\nR$${total_venda}`,
-                                        `Total Venda\nR$${total_venda}`]
+                                        `Total Nota\nR$${total_venda}`]
                                 ]
                             }
                         },
@@ -171,32 +173,34 @@ class ConttrollersNotes {
                     styles: {
                         title: {
                             bold: true,
+                            fontSize: 9,
                         },
                         columnsFilial: {
-                            fontSize: 12,
+                            fontSize: 9,
+                            fonts: "Helvetica-BoldOblique",
                             alignment: "center",
                             margin: 2,
-                            bold: true,
+                            bold: false,
                         },
                         columnsPerson: {
-                            fontSize: 12,
+                            fontSize: 9,
                             alignment: "left",
                             margin: 2
                         },
                         columnsNota: {
-                            fontSize: 10,
+                            fontSize: 9,
                             alignment: "left",
                             color: "",
                             margin: 2,
                             bold: false,
                         },
-                        header: {
-                            fontSize: 10,
-                            bold: true,
-                            alignment: "center"
-                        },
+                        // header: {
+                        //     fontSize: 10,
+                        //     bold: true,
+                        //     alignment: "center"
+                        // },
                         columnsTitle: {
-                            fontSize: 12,
+                            fontSize: 9,
                             bold: true,
                             fillColor: "",
                             color: "black",

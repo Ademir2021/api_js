@@ -31,7 +31,7 @@ export class ConttrollersSales {
     };
     async insert(request: Request, response: Response) {
         try {
-            const itens: TItens = <TItens>request.body
+            const itens: TItens[] = <TItens[]>request.body
             console.log("Consulting the last sale");
             const res_num_sale = await client.query("SELECT MAX(id_sale) FROM sales;");
             let id: number = res_num_sale.rows[0].max;

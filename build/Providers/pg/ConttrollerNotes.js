@@ -105,19 +105,21 @@ class ConttrollersNotes {
                                     [
                                         img,
                                         `${filial}
-                                     CNPJ: 18.069.383/0001-10
-                                     Avenida Castro Alves, 1241
-                                     Barbosa Ferraz - PR.
-                                     CEP: 86960-000
-                                     Telefone (44) 98852-1033\n`,
+                                CNPJ: 18.069.383/0001-10
+                                Avenida Castro Alves, 1241
+                                Barbosa Ferraz - PR.
+                                CEP: 86960-000
+                                Telefone (44) 98852-1033\n`,
                                         `Nota de Venda\n Nº 000${nota}
-                                     \nEspécie\n[PE]`,
+                                \nEspécie\n[PE]`,
                                         `Emitida\n${emitida}`,
                                     ]
                                 ]
                             }
                         },
-                        { text: '\nCLIENTE/DESTINATÁRIO', style: 'title' },
+                        {
+                            text: '\nCLIENTE/DESTINATÁRIO', style: 'title'
+                        },
                         {
                             style: 'columnsPerson',
                             table: {
@@ -125,7 +127,8 @@ class ConttrollersNotes {
                                 body: [
                                     [`Nome:${comprador}`, `User:${usuario}`],
                                     [`CPF:${cpf}`, `Email USer: ${email}`],
-                                    [`Endereço: AV, Castro Avles, 1241`, `Cidade: Barbosa Ferraz`],
+                                    [`Endereço: AV, Castro Avles, 1241`,
+                                        `Cidade: Barbosa Ferraz`],
                                     ['Estado: PR.', `CEP: 86960-000`],
                                     ['Telefone(1):(44) 98851-1033', `Telefone(2):`],
                                     [`Email: ${email}`, `[null]`]
@@ -145,11 +148,12 @@ class ConttrollersNotes {
                                 body
                             },
                         },
-                        { text: '\nVALORES/TOTAIS', style: 'title' },
+                        {
+                            text: '\nVALORES/TOTAIS', style: 'title'
+                        },
                         {
                             style: '',
                             table: {
-                                // heights: ["*"],
                                 widths: ['*', '*', '*', 100],
                                 body: [
                                     [`Produtos/Serviços\nR$ ${val_rec}`,
@@ -159,7 +163,9 @@ class ConttrollersNotes {
                                 ]
                             }
                         },
-                        { text: '\nDADOS COMPLEMENTARES', style: 'title' },
+                        {
+                            text: '\nDADOS COMPLEMENTARES', style: 'title'
+                        },
                         {
                             style: "",
                             table: {
@@ -194,11 +200,6 @@ class ConttrollersNotes {
                             margin: 2,
                             bold: false,
                         },
-                        // header: {
-                        //     fontSize: 10,
-                        //     bold: true,
-                        //     alignment: "center"
-                        // },
                         columnsTitle: {
                             fontSize: 9,
                             bold: true,

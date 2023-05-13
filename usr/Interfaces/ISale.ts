@@ -4,10 +4,10 @@ export type TItens={
     user:string;
     filial:number;
     user_id:number;
-    id:number;
+    id?:number;
     id_product:number;
     descric:string;
     amount_product:number;
     val_product:number;
-    tItem:number;
+    tItem?:number;
 }

@@ -88,13 +88,13 @@ export class ConttrollersNotes {
                 defaultStyle: { font: "Helvetica" },
                 content: [
                     {
-                        style: 'columnsFilial',
+                        style: 'columnsFilial', 
                         table: {
                             heights: function (row: any) {
                                 return 10;
                             },
 
-                            widths: ["auto", 120, 120, 100],
+                            widths: [ "28%", "28%", "21%" , "23%"],
                             body: [
                                 [
                                 img,
@@ -117,7 +117,7 @@ export class ConttrollersNotes {
                     {
                         style: 'columnsPerson',
                         table: {
-                            widths: ["auto", "auto"],
+                            widths: ["50%", "50%"],
                             body: [
                                 [`Nome:${comprador}`, `User:${usuario}`],
                                 [`CPF:${cpf}`, `Email USer: ${email}`],
@@ -138,7 +138,7 @@ export class ConttrollersNotes {
                             heights: function (row: any) {
                                 return 10;
                             },
-                            widths: [30, "auto", 70, 40, 56, 58,],
+                            widths: ["6%", "46%", "15%", "7%", "12%", "14%"],
                             body
                         },
                     },

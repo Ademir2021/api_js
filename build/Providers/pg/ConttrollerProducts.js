@@ -27,7 +27,20 @@ class ConttrollersProducts {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 let id = 0;
-                const res = yield connect_1.client.query("SELECT * FROM products WHERE id_product > '" + id + "'");
+                const res = yield connect_1.client.query("SELECT * FROM products");
+                response.json(res.rows);
+            }
+            catch (err) {
+                console.log("Error Occurred !!" + err);
+            }
+        });
+    }
+    ;
+    selectOneProduct(request, response) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const { id } = request.params;
+                const res = yield connect_1.client.query("SELECT * FROM products WHERE id_product = '" + id + "'");
                 response.json(res.rows);
             }
             catch (err) {

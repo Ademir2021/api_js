@@ -10,15 +10,26 @@ export class ConttrollersProducts {
             console.log("Error Occurred !!" + err)
         }
     };
+
     async select(request: Request, response: Response) {
         try {
-            let id = 0
-            const res = await client.query("SELECT * FROM products WHERE id_product > '" + id + "'")
+            const res = await client.query("SELECT * FROM products")
             response.json(res.rows);
         } catch (err) {
             console.log("Error Occurred !!" + err)
         }
     };
+
+    async selectOneProduct(request: Request, response: Response) {
+        try {
+            const { id } = request.params
+            const res = await client.query("SELECT * FROM products WHERE id_product = '" + id + "'")
+            response.json(res.rows);
+        } catch (err) {
+            console.log("Error Occurred !!" + err)
+        }
+    };
+
     async insert(request: Request, response: Response) {
         try {
             const { descric_product, val_max_product, val_min_product, fk_brand, fk_sector, bar_code }: IProduct = <IProduct>request.body
@@ -35,6 +46,7 @@ export class ConttrollersProducts {
             console.log("Error Occurred !!" + err)
         }
     };
+
     async update(request: Request, response: Response) {
         try {
             const id = request.params.id
@@ -45,6 +57,7 @@ export class ConttrollersProducts {
             console.log("Error Occurred !!" + err)
         }
     };
+    
     async delete(request: Request, response: Response) {
         try {
             const id = request.params.id

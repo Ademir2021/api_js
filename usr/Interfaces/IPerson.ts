@@ -4,5 +4,6 @@ export type IPerson = {
     name_pers:string | any;
     cpf_pers:string;
     address_pers:string;
-    fk_name_filial:number;  
+    fk_name_filial:number;
+    fk_id_user:number; 
   }

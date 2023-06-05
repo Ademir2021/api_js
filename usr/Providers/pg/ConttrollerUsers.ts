@@ -23,12 +23,23 @@ export class ConttrollersUSers {
     async select(request: Request, response: Response) {
         try {
             let id = 0
-            const res = await client.query("SELECT *FROM users WHERE id > '" + id + "';")
+            const res = await client.query("SELECT * FROM users")
             response.json(res.rows);
         } catch (err) {
             console.log("Error Occurred !!" + err)
         }
     };
+
+    async selectOneUser(request: Request, response: Response) {
+        try {
+            const { id } = request.params
+            const res = await client.query("SELECT * FROM users WHERE id = '" + id + "'")
+            response.json(res.rows);
+        } catch (err) {
+            console.log("Error Occurred !!" + err)
+        }
+    };
+
     async insert(request: Request, response: Response) {
         try {
             const { name, username, password } = <IUser>request.body

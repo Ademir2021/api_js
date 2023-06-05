@@ -11,19 +11,35 @@ export class ConttrollersSales {
             console.log(err, "Error Occurred !! :" + err)
         }
     };
+
     async select(request: Request, response: Response) {
         try {
             let id = 0
-            const res_sale_ = await client.query("SELECT *FROM sales WHERE id_sale > '" + id + "'")
+            const res_sale_ = await client.query("SELECT * FROM sales")
             const sales = res_sale_.rows
             response.send(sales);
-            const res_itens_sale = await client.query("SELECT *FROM itens_sale WHERE id_item_sequen > '" + id + "'")
+            const res_itens_sale = await client.query("SELECT * FROM itens_sale")
             const itens_sale = res_itens_sale.rows
             //response.json(itens_sale)
         } catch (err) {
             console.log("Error Occurred !! :" + err)
         }
     };
+
+    async selectOneSale(request: Request, response: Response) {
+        try {
+            const { id } = request.params
+            const res_sale_ = await client.query("SELECT * FROM sales WHERE id_sale = '" + id + "'")
+            const sales = res_sale_.rows
+            response.send(sales);
+            const res_itens_sale = await client.query("SELECT * FROM itens_sale WHERE id_item_sequen = '" + id + "'")
+            const itens_sale = res_itens_sale.rows
+            //response.json(itens_sale)
+        } catch (err) {
+            console.log("Error Occurred !! :" + err)
+        }
+    };
+
     async insert(request: Request, response: Response) {
         try {
             const itens: TItens[] = <TItens[]>request.body

@@ -88,44 +88,43 @@ export class ConttrollersNotes {
                 defaultStyle: { font: "Helvetica" },
                 content: [
                     {
-                        style: 'columnsFilial', 
+                        style: 'columnsFilial',
                         table: {
                             heights: function (row: any) {
                                 return 10;
                             },
 
-                            widths: [ "28%", "28%", "21%" , "23%"],
+                            widths: ["28%", "28%", "21%", "23%"],
                             body: [
                                 [
-                                img,
-                                `${filial}
-                                CNPJ: 18.069.383/0001-10
-                                Avenida Castro Alves, 1241
-                                Barbosa Ferraz - PR.
-                                CEP: 86960-000
-                                Telefone (44) 98852-1033\n`,
-                                `Nota de Venda\n Nº 000${nota}
-                                \nEspécie\n[PE]`,
-                                `Emitida\n${emitida}`,
+                                    img,
+                                    `${filial}
+                                    CNPJ: 18.069.383/0001-10
+                                    Avenida Castro Alves, 1241
+                                    Barbosa Ferraz - PR.
+                                    CEP: 86960-000
+                                    Telefone (44) 98852-1033\n`,
+                                   `Nota de Venda\n Nº 000${nota}
+                                  \nEspécie\n[PE]`,
+                                   `Emitida\n${emitida}`,
                                 ]
                             ]
                         }
                     },
                     {
                         text: '\nCLIENTE/DESTINATÁRIO', style: 'title'
-                    },
+                     },
                     {
                         style: 'columnsPerson',
                         table: {
                             widths: ["50%", "50%"],
                             body: [
-                                [`Nome:${comprador}`, `User:${usuario}`],
-                                [`CPF:${cpf}`, `Email USer: ${email}`],
-                                [`Endereço: AV, Castro Avles, 1241`,
-                                    `Cidade: Barbosa Ferraz`],
-                                ['Estado: PR.', `CEP: 86960-000`],
-                                ['Telefone(1):(44) 98851-1033', `Telefone(2):`],
-                                [`Email: ${email}`, `[null]`]
+                                [`Nome:${comprador}`, `Telefone(1): (44) 98852-1033`],
+                                [`CPF:${cpf}`, `Telefone(2):`],
+                                [`Endereço: AV, Castro Avles, 1241`,`Email:${email}`],
+                                ['Cidade: Barbosa Ferraz.', `NULL`],
+                                ['Estado: PR', `User:${usuario}`],
+                                [`CEP: 86960-000`, `Email: ${email}`]
                             ]
                         }
                     },

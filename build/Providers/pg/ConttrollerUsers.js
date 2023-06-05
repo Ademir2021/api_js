@@ -40,7 +40,20 @@ class ConttrollersUSers {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 let id = 0;
-                const res = yield connect_1.client.query("SELECT *FROM users WHERE id > '" + id + "';");
+                const res = yield connect_1.client.query("SELECT * FROM users");
+                response.json(res.rows);
+            }
+            catch (err) {
+                console.log("Error Occurred !!" + err);
+            }
+        });
+    }
+    ;
+    selectOneUser(request, response) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const { id } = request.params;
+                const res = yield connect_1.client.query("SELECT * FROM users WHERE id = '" + id + "'");
                 response.json(res.rows);
             }
             catch (err) {

@@ -26,7 +26,6 @@ class ConttrollersProducts {
     select(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                let id = 0;
                 const res = yield connect_1.client.query("SELECT * FROM products");
                 response.json(res.rows);
             }
@@ -59,7 +58,8 @@ class ConttrollersProducts {
                     response.json("Barras já existe");
                 }
                 catch (_a) {
-                    yield connect_1.client.query('INSERT INTO products("descric_product", "val_max_product", "val_min_product", "fk_brand", "fk_sector", "bar_code") VALUES (' + "'" + descric_product + "', '" + val_max_product + "', '" + val_min_product + "', '" + fk_brand + "', '" + fk_sector + "', '" + bar_code + "');");
+                    yield connect_1.client.query('INSERT INTO products("descric_product", "val_max_product", "val_min_product", "fk_brand", "fk_sector", "bar_code") VALUES ('
+                        + "'" + descric_product + "', '" + val_max_product + "', '" + val_min_product + "', '" + fk_brand + "', '" + fk_sector + "', '" + bar_code + "')");
                     const res = yield connect_1.client.query("SELECT descric_product FROM products WHERE descric_product = '" + descric_product + "' LIMIT(1)");
                     response.json("Produto registrado: " + res.rows[0].descric_product);
                 }
@@ -75,7 +75,8 @@ class ConttrollersProducts {
             try {
                 const id = request.params.id;
                 const { descric_product, val_max_product, val_min_product, fk_brand, fk_sector, bar_code } = request.body;
-                yield connect_1.client.query("UPDATE products SET descric_product = '" + descric_product + "', val_max_product = '" + val_max_product + "', val_min_product ='" + val_min_product + "', fk_brand = '" + fk_brand + "', fk_sector = '" + fk_sector + "', bar_code = '" + bar_code + "' WHERE id_product = '" + id + "'");
+                yield connect_1.client.query("UPDATE products SET descric_product = '" + descric_product + "', val_max_product = '"
+                    + val_max_product + "', val_min_product ='" + val_min_product + "', fk_brand = '" + fk_brand + "', fk_sector = '" + fk_sector + "', bar_code = '" + bar_code + "' WHERE id_product = '" + id + "'");
                 response.json("Update com sucess !!");
             }
             catch (err) {

@@ -3,7 +3,6 @@ import { client } from "../../connect"
 import PDFPrinter from 'pdfmake'
 import fs from 'fs'
 import { IReportNotes } from "../../Interfaces/IReportNotes"
-
 import { format, parseISO } from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
 
@@ -14,6 +13,7 @@ export const formatDate = (date: string) => {
 }
 
 export class ConttrollersNotes {
+
     async index(request: Request, response: Response) {
         try {
             response.status(200).json({ status: 'sucesss' })
@@ -21,6 +21,7 @@ export class ConttrollersNotes {
             console.log("Error Occurred !!" + err)
         }
     };
+    
     async select(request: Request, response: Response) {
         try {
             const { num_nota } = request.params

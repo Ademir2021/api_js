@@ -3,6 +3,7 @@ export type IPerson = {
     created_at?:Date | any;
     name_pers:string | any;
     cpf_pers:string;
+    phone_pers:string | any ;
     address_pers:string;
     fk_name_filial:number;
     fk_id_user:number; 

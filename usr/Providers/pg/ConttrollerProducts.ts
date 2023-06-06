@@ -3,6 +3,7 @@ import { client } from "../../connect"
 import { IProduct } from "../../Interfaces/IProduct"
 
 export class ConttrollersProducts {
+
     async index(request: Request, response: Response) {
         try {
             response.status(200).json({ status: 'sucesss' })
@@ -38,7 +39,8 @@ export class ConttrollersProducts {
                 bar_code !== res_bar_code.rows[0].bar_code
                 response.json("Barras já existe")
             } catch {
-                await client.query('INSERT INTO products("descric_product", "val_max_product", "val_min_product", "fk_brand", "fk_sector", "bar_code") VALUES (' + "'" + descric_product + "', '" + val_max_product + "', '" + val_min_product + "', '" + fk_brand + "', '" + fk_sector + "', '" + bar_code + "');")
+                await client.query('INSERT INTO products("descric_product", "val_max_product", "val_min_product", "fk_brand", "fk_sector", "bar_code") VALUES ('
+                + "'" + descric_product + "', '" + val_max_product + "', '" + val_min_product + "', '" + fk_brand + "', '" + fk_sector + "', '" + bar_code + "')")
                 const res = await client.query("SELECT descric_product FROM products WHERE descric_product = '" + descric_product + "' LIMIT(1)")
                 response.json("Produto registrado: " + res.rows[0].descric_product)
             }
@@ -51,7 +53,8 @@ export class ConttrollersProducts {
         try {
             const id = request.params.id
             const { descric_product, val_max_product, val_min_product, fk_brand, fk_sector, bar_code }: IProduct = <IProduct>request.body
-            await client.query("UPDATE products SET descric_product = '" + descric_product + "', val_max_product = '" + val_max_product + "', val_min_product ='" + val_min_product + "', fk_brand = '" + fk_brand + "', fk_sector = '" + fk_sector + "', bar_code = '" + bar_code + "' WHERE id_product = '" + id + "'")
+            await client.query("UPDATE products SET descric_product = '" + descric_product + "', val_max_product = '"
+            + val_max_product + "', val_min_product ='" + val_min_product + "', fk_brand = '" + fk_brand + "', fk_sector = '" + fk_sector + "', bar_code = '" + bar_code + "' WHERE id_product = '" + id + "'")
             response.json("Update com sucess !!")
         } catch (err) {
             console.log("Error Occurred !!" + err)

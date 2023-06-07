@@ -21,6 +21,16 @@ export class ConttrollersPersons {
         }
     };
 
+    async selectOne(request: Request, response: Response) {
+        try {
+            const {id} = request.params
+            const res = await client.query("SELECT * FROM persons WHERE id_person = '" + id + "'")
+            response.json(res.rows);
+        } catch (err) {
+            console.log("Error Occurred !!: " + err)
+        }
+    };
+
     async selectOneUser(request: Request, response: Response) {
         try {
             const {user_id} = request.params
@@ -41,7 +51,7 @@ export class ConttrollersPersons {
             } catch {
                 await client.query('INSERT INTO persons("name_pers", "cpf_pers", "phone_pers", "address_pers", "fk_name_filial", fk_id_user) VALUES (' + "'" + person.name_pers + "', '" + person.cpf_pers + "', '"+person.phone_pers+"', '" + person.address_pers + "', '" + person.fk_name_filial + "', '"+person.fk_id_user+"');")
                 const res = await client.query("SELECT name_pers FROM persons WHERE name_pers = '" + person.name_pers + "' LIMIT(1)")
-                response.json("Pessoa registrada: " + res.rows[0].name_pers)
+                response.json("Registrado com sucesso: " + res.rows[0].name_pers)
             }
         } catch (err) {
             console.log("Error Occurred !!: " + err)
@@ -52,7 +62,7 @@ export class ConttrollersPersons {
             const id = request.params.id
             const  person : IPerson = <IPerson>request.body
             await client.query("UPDATE persons SET name_pers = '" + person.name_pers + "', cpf_pers = '" + person.cpf_pers + "', phone_pers ='"+person.phone_pers+"', address_pers ='" + person.address_pers + "', fk_name_filial = '" + person.fk_name_filial + "' WHERE id_person = '" + id + "'")
-            response.json("Update com sucess !!")
+            response.json("Atualizado com sucesso !")
         } catch (err) {
             console.log("Erro Ocorred", err)
         }
@@ -61,7 +71,7 @@ export class ConttrollersPersons {
         try {
             const id = request.params.id
             await client.query("DELETE FROM persons WHERE id_person = '" + id + "'")
-            response.json("Produto removido da tabela")
+            response.json("Removido com sucesso !")
         } catch (err) {
             response.json("Error Ocorred !!" + err)
         }

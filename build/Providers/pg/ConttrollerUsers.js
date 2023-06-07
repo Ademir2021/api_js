@@ -74,11 +74,11 @@ class ConttrollersUSers {
                 catch (_a) {
                     yield connect_1.client.query('INSERT INTO users("name", "username", "password") VALUES (' + "'" + name + "', '" + username + "', '" + password + "');");
                     const res_name = yield connect_1.client.query("SELECT name FROM users WHERE name = '" + name + "' LIMIT(1)");
-                    response.json("Registro com Successo: " + res_name.rows[0].name);
+                    response.json("Registrado com successo: " + res_name.rows[0].name);
                 }
             }
             catch (err) {
-                response.json("Error Occurred !!" + err);
+                response.json("Error Occurred !" + err);
             }
         });
     }
@@ -89,7 +89,7 @@ class ConttrollersUSers {
                 const id = request.params.id;
                 const { name, username, password } = request.body;
                 yield connect_1.client.query("UPDATE users SET name = '" + name + "', username = '" + username + "', password = '" + password + "' WHERE id = '" + id + "'");
-                response.json("Update com sucess !!");
+                response.json("Atualizado com sucesso !");
             }
             catch (err) {
                 response.json("Error Ocorred !!: " + err);
@@ -102,7 +102,7 @@ class ConttrollersUSers {
             try {
                 const id = request.params.id;
                 yield connect_1.client.query("DELETE FROM users WHERE id = '" + id + "'");
-                response.json("user removido da tabela");
+                response.json("Removido com sucesso");
             }
             catch (err) {
                 console.log("Error Ocorred: " + err);

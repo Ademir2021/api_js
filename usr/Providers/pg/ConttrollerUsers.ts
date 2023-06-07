@@ -50,10 +50,10 @@ export class ConttrollersUSers {
             } catch {
                 await client.query('INSERT INTO users("name", "username", "password") VALUES (' + "'" + name + "', '" + username + "', '" + password + "');")
                 const res_name = await client.query("SELECT name FROM users WHERE name = '" + name + "' LIMIT(1)")
-                response.json("Registro com Successo: " + res_name.rows[0].name)
+                response.json("Registrado com successo: " + res_name.rows[0].name)
             }
         } catch (err) {
-            response.json("Error Occurred !!" + err)
+            response.json("Error Occurred !" + err)
         }
     };
     async update(request: Request, response: Response) {
@@ -61,7 +61,7 @@ export class ConttrollersUSers {
             const id = request.params.id
             const { name, username, password }: IUser = <IUser>request.body
             await client.query("UPDATE users SET name = '" + name + "', username = '" + username + "', password = '" + password + "' WHERE id = '" + id + "'")
-            response.json("Update com sucess !!")
+            response.json("Atualizado com sucesso !")
         } catch (err) {
             response.json("Error Ocorred !!: " + err)
         }
@@ -70,7 +70,7 @@ export class ConttrollersUSers {
         try {
             const id = request.params.id
             await client.query("DELETE FROM users WHERE id = '" + id + "'")
-            response.json("user removido da tabela")
+            response.json("Removido com sucesso")
         } catch (err) {
             console.log("Error Ocorred: " + err)
         }

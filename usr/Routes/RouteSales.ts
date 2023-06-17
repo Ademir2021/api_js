@@ -8,5 +8,6 @@ routeSale.get('/', conttrollersSales.index)
 routeSale.get('/sales', conttrollersSales.select)
 routeSale.get('/sale/:id', conttrollersSales.selectOneSale)
 routeSale.post('/sales', conttrollersSales.insert)
+routeSale.post('/itens', conttrollersSales.insertItens)
 
 export { routeSale }

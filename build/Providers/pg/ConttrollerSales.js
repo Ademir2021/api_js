@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ConttrollersSales = void 0;
 const connect_1 = require("../../connect");
 class ConttrollersSales {
-    index(request, response) {
+    index(response) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 response.status(200).json({ status: 'sucesss' });
@@ -23,7 +23,7 @@ class ConttrollersSales {
         });
     }
     ;
-    select(request, response) {
+    select(response) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 let id = 0;
@@ -57,18 +57,18 @@ class ConttrollersSales {
         });
     }
     ;
-    insert(request, response) {
+    insert(request) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const { fk_name_pers, disc_sale, filial, user_id } = request.body;
                 yield connect_1.client.query('INSERT INTO sales("fk_name_pers", "disc_sale", "fk_name_filial", "fk_name_user") VALUES ('
-                    + "'" + fk_name_pers + "','" + disc_sale + "','" + filial + "','" + user_id + "')");
-                const res_num_sale = yield connect_1.client.query("SELECT MAX(id_sale) FROM sales");
-                const num_sale = res_num_sale.rows[0].max;
-                response.json(num_sale);
+                    + "'" + fk_name_pers +
+                    "','" + disc_sale +
+                    "','" + filial + "','"
+                    + user_id + "')");
             }
             catch (err) {
-                console.log("Error Occurred !! :" + err);
+                console.log("Error Occurred !" + err);
             }
         });
     }
@@ -82,7 +82,11 @@ class ConttrollersSales {
                 for (let i = 0; itens.length > i; i++) {
                     const sum_total_item = itens[i].amount * itens[i].valor;
                     yield connect_1.client.query('INSERT INTO itens_sale("fk_sale", "fk_product", "amount_product", "val_product", "total_product") VALUES ('
-                        + "'" + num_sale + "','" + itens[i].item + "','" + itens[i].amount + "','" + itens[i].valor + "','" + sum_total_item + "')");
+                        + "'" + num_sale +
+                        "','" + itens[i].item +
+                        "','" + itens[i].amount +
+                        "','" + itens[i].valor +
+                        "','" + sum_total_item + "')");
                 }
                 const res_total_itens = yield connect_1.client.query("SELECT SUM (total_product) AS total FROM itens_sale WHERE fk_sale = '" + num_sale + "'");
                 const res_disc_sale = yield connect_1.client.query("SELECT disc_sale FROM sales WHERE id_sale = '" + num_sale + "'");
@@ -92,9 +96,10 @@ class ConttrollersSales {
                 response.json(num_sale);
             }
             catch (err) {
-                console.log("Error Occurred !! :" + err);
+                console.log("Error Occurred !" + err);
             }
         });
     }
+    ;
 }
 exports.ConttrollersSales = ConttrollersSales;

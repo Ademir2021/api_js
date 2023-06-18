@@ -1,23 +1,9 @@
 import { Request, Response } from "express"
 import { client } from "../../connect"
-// import { TItens } from "../../Interfaces/ISale"
-
-type TSale = {
-    filial: number
-    user_id: number;
-    fk_name_pers: number;
-    disc_sale: number;
-};
-
-
-type TItens = {
-    item: number;
-    amount: number;
-    valor: number;
-};
+import { TSale, TItens } from "../../Interfaces/ISale"
 
 export class ConttrollersSales {
-
+    
     async index(request: Request, response: Response) {
         try {
             response.status(200).json({ status: 'sucesss' })

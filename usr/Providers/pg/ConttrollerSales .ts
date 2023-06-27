@@ -1,24 +1,6 @@
 import { Request, Response } from "express"
 import { client } from "../../connect"
-
-
-type TSale = {
-    filial: number;
-    user_id: number;
-    user: string;
-    fk_name_pers: number;
-    name_pers: string;
-    disc_sale: number;
-    tItens: number;
-    tNote: number;
-    paySale: number;
-    id: number;
-    item: number;
-    descric: string;
-    amount: number;
-    valor: number;
-    tItem: number;
-};
+import { TSale } from "../../Interfaces/ISale"
 
 export class ConttrollersSales {
 
@@ -26,7 +8,7 @@ export class ConttrollersSales {
         try {
             response.status(200).json({ status: 'sucesss' })
         } catch (err) {
-            console.log(err, "Error Occurred !! :" + err)
+            console.log(err, "Error Occurred ! " + err)
         }
     };
 
@@ -38,9 +20,9 @@ export class ConttrollersSales {
             response.send(sales);
             const res_itens_sale = await client.query("SELECT * FROM itens_sale")
             const itens_sale = res_itens_sale.rows
-            //response.json(itens_sale)
+            // console.table(itens_sale)
         } catch (err) {
-            console.log("Error Occurred !! :" + err)
+            console.log("Error Occurred ! " + err)
         }
     };
 
@@ -52,9 +34,9 @@ export class ConttrollersSales {
             response.send(sales);
             const res_itens_sale = await client.query("SELECT * FROM itens_sale WHERE id_item_sequen = '" + id + "'")
             const itens_sale = res_itens_sale.rows
-            //response.json(itens_sale)
+            console.table(itens_sale)
         } catch (err) {
-            console.log("Error Occurred !! :" + err)
+            console.log("Error Occurred ! " + err)
         }
     };
 
@@ -99,7 +81,7 @@ export class ConttrollersSales {
                 ("UPDATE sales SET val_rec ='" + sub_total_sale + "',  total_sale = '" + total_sale + "' WHERE id_sale = '"+num_sale+"'")
             response.json(num_sale)
         } catch (err) {
-            console.log("Error Occurred !! :" + err)
+            console.log("Error Occurred ! " + err)
         }
     };
 }

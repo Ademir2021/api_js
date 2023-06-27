@@ -18,7 +18,7 @@ class ConttrollersProducts {
                 response.status(200).json({ status: 'sucesss' });
             }
             catch (err) {
-                console.log("Error Occurred !!" + err);
+                console.log("Error Occurred !" + err);
             }
         });
     }
@@ -30,7 +30,7 @@ class ConttrollersProducts {
                 response.json(res.rows);
             }
             catch (err) {
-                console.log("Error Occurred !!" + err);
+                console.log("Error Occurred ! " + err);
             }
         });
     }
@@ -43,7 +43,7 @@ class ConttrollersProducts {
                 response.json(res.rows);
             }
             catch (err) {
-                console.log("Error Occurred !!" + err);
+                console.log("Error Occurred ! " + err);
             }
         });
     }
@@ -65,7 +65,7 @@ class ConttrollersProducts {
                 }
             }
             catch (err) {
-                console.log("Error Occurred !!" + err);
+                console.log("Error Occurred ! " + err);
             }
         });
     }
@@ -80,7 +80,7 @@ class ConttrollersProducts {
                 response.json("Atualizado com sucesso!");
             }
             catch (err) {
-                console.log("Error Occurred !!" + err);
+                console.log("Error Occurred ! " + err);
             }
         });
     }
@@ -93,7 +93,7 @@ class ConttrollersProducts {
                 response.json("Removido com sucesso !");
             }
             catch (err) {
-                response.json("Error Ocorred !!" + err);
+                response.json("Error Ocorred ! " + err);
             }
         });
     }

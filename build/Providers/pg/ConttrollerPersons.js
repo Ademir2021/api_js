@@ -18,7 +18,7 @@ class ConttrollersPersons {
                 response.status(200).json({ status: 'sucesss' });
             }
             catch (err) {
-                console.log("Error Occurred !!: " + err);
+                console.log("Error Occurred ! " + err);
             }
         });
     }
@@ -30,7 +30,7 @@ class ConttrollersPersons {
                 response.json(res.rows);
             }
             catch (err) {
-                console.log("Error Occurred !!: " + err);
+                console.log("Error Occurred ! " + err);
             }
         });
     }
@@ -43,7 +43,7 @@ class ConttrollersPersons {
                 response.json(res.rows);
             }
             catch (err) {
-                console.log("Error Occurred !!: " + err);
+                console.log("Error Occurred ! " + err);
             }
         });
     }
@@ -56,7 +56,7 @@ class ConttrollersPersons {
                 response.json(res.rows);
             }
             catch (err) {
-                console.log("Error Occurred !!: " + err);
+                console.log("Error Occurred ! " + err);
             }
         });
     }
@@ -68,7 +68,7 @@ class ConttrollersPersons {
                 const res_cpf = yield connect_1.client.query("SELECT cpf_pers FROM persons WHERE cpf_pers = '" + person.cpf_pers + "' LIMIT(1)");
                 try {
                     person.cpf_pers !== res_cpf.rows[0].cpf_pers;
-                    response.json("CPF pertence a outra Pessoa !! :" + person.cpf_pers);
+                    response.json("CPF pertence a outra Pessoa ! " + person.cpf_pers);
                 }
                 catch (_a) {
                     yield connect_1.client.query('INSERT INTO persons("name_pers", "cpf_pers", "phone_pers", "address_pers", "fk_name_filial", fk_id_user) VALUES (' + "'" + person.name_pers + "', '" + person.cpf_pers + "', '" + person.phone_pers + "', '" + person.address_pers + "', '" + person.fk_name_filial + "', '" + person.fk_id_user + "');");
@@ -88,10 +88,10 @@ class ConttrollersPersons {
                 const id = request.params.id;
                 const person = request.body;
                 yield connect_1.client.query("UPDATE persons SET name_pers = '" + person.name_pers + "', cpf_pers = '" + person.cpf_pers + "', phone_pers ='" + person.phone_pers + "', address_pers ='" + person.address_pers + "', fk_name_filial = '" + person.fk_name_filial + "' WHERE id_person = '" + id + "'");
-                response.json("Atualizado com sucesso !");
+                response.json("Atualizado com sucesso ! ");
             }
             catch (err) {
-                console.log("Erro Ocorred", err);
+                console.log("Erro Ocorred ! ", err);
             }
         });
     }
@@ -104,7 +104,7 @@ class ConttrollersPersons {
                 response.json("Removido com sucesso !");
             }
             catch (err) {
-                response.json("Error Ocorred !!" + err);
+                response.json("Error Ocorred ! " + err);
             }
         });
     }

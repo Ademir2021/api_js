@@ -8,7 +8,7 @@ export class ConttrollersProducts {
         try {
             response.status(200).json({ status: 'sucesss' })
         } catch (err) {
-            console.log("Error Occurred !!" + err)
+            console.log("Error Occurred !" + err)
         }
     };
 
@@ -17,7 +17,7 @@ export class ConttrollersProducts {
             const res = await client.query("SELECT * FROM products")
             response.json(res.rows);
         } catch (err) {
-            console.log("Error Occurred !!" + err)
+            console.log("Error Occurred ! " + err)
         }
     };
 
@@ -27,7 +27,7 @@ export class ConttrollersProducts {
             const res = await client.query("SELECT * FROM products WHERE id_product = '" + id + "'")
             response.json(res.rows);
         } catch (err) {
-            console.log("Error Occurred !!" + err)
+            console.log("Error Occurred ! " + err)
         }
     };
 
@@ -45,7 +45,7 @@ export class ConttrollersProducts {
                 response.json("Registrado com sucesso: " + res.rows[0].descric_product)
             }
         } catch (err) {
-            console.log("Error Occurred !!" + err)
+            console.log("Error Occurred ! " + err)
         }
     };
 
@@ -57,7 +57,7 @@ export class ConttrollersProducts {
             + val_max_product + "', val_min_product ='" + val_min_product + "', fk_brand = '" + fk_brand + "', fk_sector = '" + fk_sector + "', bar_code = '" + bar_code + "' WHERE id_product = '" + id + "'")
             response.json("Atualizado com sucesso!")
         } catch (err) {
-            console.log("Error Occurred !!" + err)
+            console.log("Error Occurred ! " + err)
         }
     };
     
@@ -67,7 +67,7 @@ export class ConttrollersProducts {
             await client.query("DELETE FROM products WHERE id_product = '" + id + "'")
             response.json("Removido com sucesso !")
         } catch (err) {
-            response.json("Error Ocorred !!" + err)
+            response.json("Error Ocorred ! " + err)
         }
     };
 }

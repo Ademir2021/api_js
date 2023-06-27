@@ -8,7 +8,7 @@ export class ConttrollersPersons {
         try {
             response.status(200).json({ status: 'sucesss' })
         } catch (err) {
-            console.log("Error Occurred !!: " + err)
+            console.log("Error Occurred ! " + err)
         }
     };
 
@@ -17,7 +17,7 @@ export class ConttrollersPersons {
             const res = await client.query("SELECT * FROM persons")
             response.json(res.rows);
         } catch (err) {
-            console.log("Error Occurred !!: " + err)
+            console.log("Error Occurred ! " + err)
         }
     };
 
@@ -27,7 +27,7 @@ export class ConttrollersPersons {
             const res = await client.query("SELECT * FROM persons WHERE id_person = '" + id + "'")
             response.json(res.rows);
         } catch (err) {
-            console.log("Error Occurred !!: " + err)
+            console.log("Error Occurred ! " + err)
         }
     };
 
@@ -37,7 +37,7 @@ export class ConttrollersPersons {
             const res = await client.query("SELECT * FROM persons WHERE fk_id_user = '" + user_id + "'")
             response.json(res.rows);
         } catch (err) {
-            console.log("Error Occurred !!: " + err)
+            console.log("Error Occurred ! " + err)
         }
     };
 
@@ -47,7 +47,7 @@ export class ConttrollersPersons {
             const res_cpf = await client.query("SELECT cpf_pers FROM persons WHERE cpf_pers = '" + person.cpf_pers + "' LIMIT(1)")
             try {
                 person.cpf_pers !== res_cpf.rows[0].cpf_pers
-                response.json("CPF pertence a outra Pessoa !! :" + person.cpf_pers)
+                response.json("CPF pertence a outra Pessoa ! " + person.cpf_pers)
             } catch {
                 await client.query('INSERT INTO persons("name_pers", "cpf_pers", "phone_pers", "address_pers", "fk_name_filial", fk_id_user) VALUES (' + "'" + person.name_pers + "', '" + person.cpf_pers + "', '"+person.phone_pers+"', '" + person.address_pers + "', '" + person.fk_name_filial + "', '"+person.fk_id_user+"');")
                 const res = await client.query("SELECT name_pers FROM persons WHERE name_pers = '" + person.name_pers + "' LIMIT(1)")
@@ -62,9 +62,9 @@ export class ConttrollersPersons {
             const id = request.params.id
             const  person : IPerson = <IPerson>request.body
             await client.query("UPDATE persons SET name_pers = '" + person.name_pers + "', cpf_pers = '" + person.cpf_pers + "', phone_pers ='"+person.phone_pers+"', address_pers ='" + person.address_pers + "', fk_name_filial = '" + person.fk_name_filial + "' WHERE id_person = '" + id + "'")
-            response.json("Atualizado com sucesso !")
+            response.json("Atualizado com sucesso ! ")
         } catch (err) {
-            console.log("Erro Ocorred", err)
+            console.log("Erro Ocorred ! ", err)
         }
     };
     async delete(request: Request, response: Response) {
@@ -73,7 +73,7 @@ export class ConttrollersPersons {
             await client.query("DELETE FROM persons WHERE id_person = '" + id + "'")
             response.json("Removido com sucesso !")
         } catch (err) {
-            response.json("Error Ocorred !!" + err)
+            response.json("Error Ocorred ! " + err)
         }
     };
 }

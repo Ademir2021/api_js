@@ -18,7 +18,7 @@ class ConttrollersSales {
                 response.status(200).json({ status: 'sucesss' });
             }
             catch (err) {
-                console.log(err, "Error Occurred !! :" + err);
+                console.log(err, "Error Occurred ! " + err);
             }
         });
     }
@@ -32,10 +32,10 @@ class ConttrollersSales {
                 response.send(sales);
                 const res_itens_sale = yield connect_1.client.query("SELECT * FROM itens_sale");
                 const itens_sale = res_itens_sale.rows;
-                //response.json(itens_sale)
+                // console.table(itens_sale)
             }
             catch (err) {
-                console.log("Error Occurred !! :" + err);
+                console.log("Error Occurred ! " + err);
             }
         });
     }
@@ -49,10 +49,10 @@ class ConttrollersSales {
                 response.send(sales);
                 const res_itens_sale = yield connect_1.client.query("SELECT * FROM itens_sale WHERE id_item_sequen = '" + id + "'");
                 const itens_sale = res_itens_sale.rows;
-                //response.json(itens_sale)
+                console.table(itens_sale);
             }
             catch (err) {
-                console.log("Error Occurred !! :" + err);
+                console.log("Error Occurred ! " + err);
             }
         });
     }
@@ -95,7 +95,7 @@ class ConttrollersSales {
                 response.json(num_sale);
             }
             catch (err) {
-                console.log("Error Occurred !! :" + err);
+                console.log("Error Occurred ! " + err);
             }
         });
     }

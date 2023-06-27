@@ -18,7 +18,7 @@ export class ConttrollersNotes {
         try {
             response.status(200).json({ status: 'sucesss' })
         } catch (err) {
-            console.log("Error Occurred !!" + err)
+            console.log("Error Occurred ! " + err)
         }
     };
     
@@ -30,6 +30,8 @@ export class ConttrollersNotes {
             const filial = res_nota.rows[0].filial
             const comprador = res_nota.rows[0].comprador
             const cpf = res_nota.rows[0].cpf
+            const endereco = res_nota.rows[0].endereco
+            const telefone = res_nota.rows[0].telefone
             const usuario = res_nota.rows[0].usuario
             const email = res_nota.rows[0].email
             const emitida = res_nota.rows[0].emitida
@@ -44,7 +46,7 @@ export class ConttrollersNotes {
 
             const columnsTitle = [
                 { text: "Item", style: "columnsTitle" },
-                { text: "Descrição Produtos", style: "columnsTitle" },
+                { text: "Descrição produtos", style: "columnsTitle" },
                 { text: "Marca", style: "columnsTitle" },
                 { text: "Quant", style: "columnsTitle" },
                 { text: "Valor Unit", style: "columnsTitle" },
@@ -105,9 +107,10 @@ export class ConttrollersNotes {
                                     Barbosa Ferraz - PR.
                                     CEP: 86960-000
                                     Telefone (44) 98852-1033\n`,
-                                   `Nota de Venda\n Nº 000${nota}
+                                   `\nNota de venda\n Nº 000${nota}
                                   \nEspécie\n[PE]`,
-                                   `Emitida\n${emitida}`,
+                                   `\n\nData de emissão\n${
+                                    emitida.toLocaleString('pt-BR', { timezone: 'UTC' })}`,
                                 ]
                             ]
                         }
@@ -120,9 +123,9 @@ export class ConttrollersNotes {
                         table: {
                             widths: ["50%", "50%"],
                             body: [
-                                [`Nome:${comprador}`, `Telefone(1): (44) 98852-1033`],
+                                [`Nome:${comprador}`, `Telefone(1):${telefone}`],
                                 [`CPF:${cpf}`, `Telefone(2):`],
-                                [`Endereço: AV, Castro Avles, 1241`,`Email:${email}`],
+                                [`Endereço:${endereco}`,`Email:${email}`],
                                 ['Cidade: Barbosa Ferraz.', `NULL`],
                                 ['Estado: PR', `User:${usuario}`],
                                 [`CEP: 86960-000`, `Email: ${email}`]
@@ -226,7 +229,7 @@ export class ConttrollersNotes {
             //console.log("Relatório concluido");
 
         } catch (err) {
-            response.json("Error Occurred !!" + err)
+            response.json("Error Occurred ! " + err)
         }
     };
 }

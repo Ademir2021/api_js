@@ -4,4 +4,3 @@ git commit -m "stns"
 git push -u origin master
 echo "fim"
 clear
-echo  "fim/n"

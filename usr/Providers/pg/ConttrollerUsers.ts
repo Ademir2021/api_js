@@ -60,7 +60,7 @@ export class ConttrollersUSers {
         try {
             const id = request.params.id
             const { name, username, password }: IUser = <IUser>request.body
-            await client.query("UPDATE users SET name = '" + name + "', username = '" + username + "', password = '" + password + "' WHERE id = '" + id + "'")
+            await client.query("UPDATE users SET updated_at = now(), name = '" + name + "', username = '" + username + "', password = '" + password + "' WHERE id = '" + id + "'")
             response.json("Atualizado com sucesso !")
         } catch (err) {
             response.json("Error Ocorred !!: " + err)

@@ -53,7 +53,7 @@ export class ConttrollersProducts {
         try {
             const id = request.params.id
             const { descric_product, val_max_product, val_min_product, fk_brand, fk_sector, bar_code }: IProduct = <IProduct>request.body
-            await client.query("UPDATE products SET descric_product = '" + descric_product + "', val_max_product = '"
+            await client.query("UPDATE products SET updated_at = now(), descric_product = '" + descric_product + "', val_max_product = '"
             + val_max_product + "', val_min_product ='" + val_min_product + "', fk_brand = '" + fk_brand + "', fk_sector = '" + fk_sector + "', bar_code = '" + bar_code + "' WHERE id_product = '" + id + "'")
             response.json("Atualizado com sucesso!")
         } catch (err) {

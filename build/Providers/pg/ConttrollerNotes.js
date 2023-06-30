@@ -12,18 +12,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ConttrollersNotes = exports.formatDate = void 0;
+exports.ConttrollersNotes = void 0;
 const connect_1 = require("../../connect");
 const pdfmake_1 = __importDefault(require("pdfmake"));
 const fs_1 = __importDefault(require("fs"));
-const date_fns_1 = require("date-fns");
-const pt_BR_1 = __importDefault(require("date-fns/locale/pt-BR"));
-const formatDate = (date) => {
-    return (0, date_fns_1.format)((0, date_fns_1.parseISO)(date), "dd 'de' MMMM 'de' yyy", {
-        locale: pt_BR_1.default
-    });
-};
-exports.formatDate = formatDate;
 class ConttrollersNotes {
     index(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -41,18 +33,7 @@ class ConttrollersNotes {
             try {
                 const { num_nota } = request.params;
                 const res_nota = yield connect_1.client.query("SELECT  *FROM nota WHERE nota = '" + num_nota + "'");
-                const nota = res_nota.rows[0].nota;
-                const filial = res_nota.rows[0].filial;
-                const comprador = res_nota.rows[0].comprador;
-                const cpf = res_nota.rows[0].cpf;
-                const endereco = res_nota.rows[0].endereco;
-                const telefone = res_nota.rows[0].telefone;
-                const usuario = res_nota.rows[0].usuario;
-                const email = res_nota.rows[0].email;
-                const emitida = res_nota.rows[0].emitida;
-                const val_rec = res_nota.rows[0].val_rec;
-                const desc_venda = res_nota.rows[0].desc_venda;
-                const total_venda = res_nota.rows[0].total_venda;
+                const { nota, filial, comprador, cpf, endereco, telefone, usuario, email, emitida, val_rec, desc_venda, total_venda, fantasia, f_endereco, cnpj, inscricao, f_telefone, f_email } = res_nota.rows[0];
                 const res_itens_nota = yield connect_1.client.query("SELECT  *FROM itens_nota WHERE id_venda = '" + num_nota + "'");
                 const itens = res_itens_nota.rows;
                 const body = [];
@@ -107,14 +88,15 @@ class ConttrollersNotes {
                                     [
                                         img,
                                         `${filial}
-                                    CNPJ: 18.069.383/0001-10
-                                    Avenida Castro Alves, 1241
-                                    Barbosa Ferraz - PR.
-                                    CEP: 86960-000
-                                    Telefone (44) 98852-1033\n`,
+                                     ${fantasia}
+                                CNPJ ${cnpj}
+                             INCRIC. ${inscricao}
+                                     ${f_endereco}
+                            TELEFONE ${f_telefone}
+                                     ${f_email}\n`,
                                         `\nNota de venda\n Nº 000${nota}
                                   \nEspécie\n[PE]`,
-                                        `\n\nData de emissão\n${emitida.toLocaleString('pt-BR', { timezone: 'UTC' })}`,
+                                        `\n\nData de emissão\n\n${emitida.toLocaleString('pt-BR', { timezone: 'UTC' })}`,
                                     ]
                                 ]
                             }
@@ -187,7 +169,7 @@ class ConttrollersNotes {
                             fonts: "Helvetica-BoldOblique",
                             alignment: "center",
                             margin: 2,
-                            bold: false,
+                            bold: true,
                         },
                         columnsPerson: {
                             fontSize: 9,

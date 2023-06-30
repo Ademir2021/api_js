@@ -3,14 +3,6 @@ import { client } from "../../connect"
 import PDFPrinter from 'pdfmake'
 import fs from 'fs'
 import { IReportNotes } from "../../Interfaces/IReportNotes"
-import { format, parseISO } from 'date-fns'
-import ptBR from 'date-fns/locale/pt-BR'
-
-export const formatDate = (date: string) => {
-    return format(parseISO(date), "dd 'de' MMMM 'de' yyy", {
-        locale: ptBR
-    })
-}
 
 export class ConttrollersNotes {
 
@@ -26,19 +18,9 @@ export class ConttrollersNotes {
         try {
             const { num_nota } = request.params
             const res_nota = await client.query("SELECT  *FROM nota WHERE nota = '" + num_nota + "'")
-            const nota = res_nota.rows[0].nota
-            const filial = res_nota.rows[0].filial
-            const comprador = res_nota.rows[0].comprador
-            const cpf = res_nota.rows[0].cpf
-            const endereco = res_nota.rows[0].endereco
-            const telefone = res_nota.rows[0].telefone
-            const usuario = res_nota.rows[0].usuario
-            const email = res_nota.rows[0].email
-            const emitida = res_nota.rows[0].emitida
-            const val_rec = res_nota.rows[0].val_rec
-            const desc_venda = res_nota.rows[0].desc_venda
-            const total_venda = res_nota.rows[0].total_venda
-
+            const { nota, filial, comprador, cpf, endereco, telefone, usuario, email, emitida,
+                    val_rec, desc_venda, total_venda, fantasia, f_endereco, cnpj, inscricao,
+                    f_telefone, f_email } = res_nota.rows[0]
             const res_itens_nota = await client.query("SELECT  *FROM itens_nota WHERE id_venda = '" + num_nota + "'")
             const itens = res_itens_nota.rows
 
@@ -102,14 +84,15 @@ export class ConttrollersNotes {
                                 [
                                     img,
                                     `${filial}
-                                    CNPJ: 18.069.383/0001-10
-                                    Avenida Castro Alves, 1241
-                                    Barbosa Ferraz - PR.
-                                    CEP: 86960-000
-                                    Telefone (44) 98852-1033\n`,
+                                     ${fantasia}
+                                CNPJ ${cnpj}
+                             INCRIC. ${inscricao}
+                                     ${f_endereco}
+                            TELEFONE ${f_telefone}
+                                     ${f_email}\n`,
                                    `\nNota de venda\n Nº 000${nota}
                                   \nEspécie\n[PE]`,
-                                   `\n\nData de emissão\n${
+                                   `\n\nData de emissão\n\n${
                                     emitida.toLocaleString('pt-BR', { timezone: 'UTC' })}`,
                                 ]
                             ]
@@ -184,7 +167,7 @@ export class ConttrollersNotes {
                         fonts: "Helvetica-BoldOblique",
                         alignment: "center",
                         margin: 2,
-                        bold: false,
+                        bold: true,
                     },
                     columnsPerson: {
                         fontSize: 9,

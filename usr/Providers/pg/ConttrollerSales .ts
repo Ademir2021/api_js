@@ -58,7 +58,8 @@ export class ConttrollersSales {
                 ("SELECT MAX(id_sale) FROM sales");
             const num_sale: number = res_num_sale.rows[0].max;
             for (let i = 1; itens.length > i; i++) {
-                const sum_total_item: number = itens[i].amount * itens[i].valor;
+                // const sum_total_item: number = itens[i].amount * itens[i].valor;
+                const sum_total_item: number = 0;
                 await client.query
                     ('INSERT INTO itens_sale("fk_sale", "fk_product", "amount_product", "val_product", "total_product") VALUES ('
                         + "'"
@@ -73,12 +74,12 @@ export class ConttrollersSales {
                         + sum_total_item
                         + "')")
             }
-            const res_total_itens = await client.query
-                ("SELECT SUM (total_product) AS total FROM itens_sale WHERE fk_sale = '" + num_sale + "'");
-            const sub_total_sale: number = res_total_itens.rows[0].total
-            const total_sale: number = sub_total_sale - itens[0].disc_sale
-            await client.query
-                ("UPDATE sales SET val_rec ='" + sub_total_sale + "',  total_sale = '" + total_sale + "' WHERE id_sale = '"+num_sale+"'")
+            // const res_total_itens = await client.query
+            //     ("SELECT SUM (total_product) AS total FROM itens_sale WHERE fk_sale = '" + num_sale + "'");
+            // const sub_total_sale: number = res_total_itens.rows[0].total
+            // const total_sale: number = sub_total_sale - itens[0].disc_sale
+            // await client.query
+            //     ("UPDATE sales SET val_rec ='" + sub_total_sale + "',  total_sale = '" + total_sale + "' WHERE id_sale = '"+num_sale+"'")
             response.json(num_sale)
         } catch (err) {
             console.log("Error Occurred ! " + err)

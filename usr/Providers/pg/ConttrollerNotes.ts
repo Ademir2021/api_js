@@ -20,10 +20,10 @@ export class ConttrollersNotes {
             const res_nota = await client.query("SELECT  *FROM nota WHERE nota = '" + num_nota + "'")
             const { nota, filial, comprador, cpf, endereco, telefone, usuario, email, emitida,
                     val_rec, desc_venda, total_venda, fantasia, f_endereco, cnpj, inscricao,
-                    f_telefone, f_email } = res_nota.rows[0]
+                    f_telefone, f_email } = res_nota.rows[0];
             const res_itens_nota = await client.query("SELECT  *FROM itens_nota WHERE id_venda = '" + num_nota + "'")
             const itens = res_itens_nota.rows
-
+                
             const body = [];
 
             const columnsTitle = [

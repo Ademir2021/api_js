@@ -9,6 +9,7 @@ const RouteProducts_1 = require("./Routes/RouteProducts");
 const RouteSales_1 = require("./Routes/RouteSales");
 const RoutePersons_1 = require("./Routes/RoutePersons");
 const RouteNotes_1 = require("./Routes/RouteNotes");
+const RoutePaymentPagSeguro_1 = require("./Routes/RoutePaymentPagSeguro ");
 const cors = require('cors');
 const app = (0, express_1.default)();
 const PORT = process.env.PORT || 3000;
@@ -19,6 +20,7 @@ app.use(RouteProducts_1.routeProduct);
 app.use(RouteSales_1.routeSale);
 app.use(RoutePersons_1.routePerson);
 app.use(RouteNotes_1.routeNote);
+app.use(RoutePaymentPagSeguro_1.routePaymentPagSeguro);
 app.use((error, request, response, next) => {
     return response.json({
         status: "Error",

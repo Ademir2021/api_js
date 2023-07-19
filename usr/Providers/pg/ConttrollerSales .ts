@@ -32,9 +32,11 @@ export class ConttrollersSales {
             const res_sale_ = await client.query("SELECT * FROM sales WHERE id_sale = '" + id + "'")
             const sales = res_sale_.rows
             response.send(sales);
-            const res_itens_sale = await client.query("SELECT * FROM itens_sale WHERE id_item_sequen = '" + id + "'")
+            const res_itens_sale = await client.query("SELECT * FROM itens_sale WHERE fk_sale = '" + id + "'")
             const itens_sale = res_itens_sale.rows
-            console.table(itens_sale)
+            for(let i = 0; itens_sale.length > i; i++)(
+            console.log(itens_sale[i])
+            )
         } catch (err) {
             console.log("Error Occurred ! " + err)
         }
@@ -80,7 +82,7 @@ export class ConttrollersSales {
             // const total_sale: number = sub_total_sale - itens[0].disc_sale
             // await client.query
             //     ("UPDATE sales SET val_rec ='" + sub_total_sale + "',  total_sale = '" + total_sale + "' WHERE id_sale = '"+num_sale+"'")
-            response.json(num_sale)
+            response.json("Nota Nº:" + num_sale + " inserida com sucesso !");
         } catch (err) {
             console.log("Error Occurred ! " + err)
         }

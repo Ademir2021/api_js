@@ -4,6 +4,7 @@ import { routeProduct } from './Routes/RouteProducts';
 import { routeSale } from './Routes/RouteSales';
 import { routePerson } from './Routes/RoutePersons';
 import { routeNote } from './Routes/RouteNotes';
+import { routePaymentPagSeguro } from './Routes/RoutePaymentPagSeguro ';
 
 const cors = require('cors')
 const app = express();
@@ -17,6 +18,7 @@ app.use(routeProduct);
 app.use(routeSale);
 app.use(routePerson);
 app.use(routeNote);
+app.use(routePaymentPagSeguro)
 
 app.use(
     (error: Error, request: Request, response: Response, next: NextFunction) => {

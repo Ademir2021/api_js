@@ -17,8 +17,7 @@ class ConttrollersPaymentPagSeguro {
     insertPix(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
             let res_payment_pix = request.body;
-            res_payment_pix = "Nada para Postar";
-            response.json(res_payment_pix);
+            response.json(JSON.stringify(res_payment_pix));
         });
     }
     ;

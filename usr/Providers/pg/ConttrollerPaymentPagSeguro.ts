@@ -6,8 +6,7 @@ const urlPagseguro = 'https://sandbox.api.pagseguro.com/orders'
 export class ConttrollersPaymentPagSeguro {
     async insertPix(request: Request, response: Response) {
         let res_payment_pix = request.body
-        res_payment_pix = "Nada para Postar"
-        response.json(res_payment_pix)
+        response.json(JSON.stringify(res_payment_pix))
     };
 
     async selectPix(request: Request, response: Response) {

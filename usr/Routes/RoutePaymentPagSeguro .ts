@@ -4,8 +4,7 @@ import { ConttrollersPaymentPagSeguro } from "../Providers/pg/ConttrollerPayment
 const routePaymentPagSeguro = Router();
 const conttrollersPix = new ConttrollersPaymentPagSeguro()
 
-routePaymentPagSeguro .get('/pix', conttrollersPix.selectPix)
 routePaymentPagSeguro .post('/pix', conttrollersPix.insertPix)
-routePaymentPagSeguro .get('/boleto', conttrollersPix.selectBoleto)
+routePaymentPagSeguro .post('/boleto', conttrollersPix.insertBoleto)
 
 export { routePaymentPagSeguro }

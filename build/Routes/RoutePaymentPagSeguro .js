@@ -6,6 +6,5 @@ const ConttrollerPaymentPagSeguro_1 = require("../Providers/pg/ConttrollerPaymen
 const routePaymentPagSeguro = (0, express_1.Router)();
 exports.routePaymentPagSeguro = routePaymentPagSeguro;
 const conttrollersPix = new ConttrollerPaymentPagSeguro_1.ConttrollersPaymentPagSeguro();
-routePaymentPagSeguro.get('/pix', conttrollersPix.selectPix);
 routePaymentPagSeguro.post('/pix', conttrollersPix.insertPix);
-routePaymentPagSeguro.get('/boleto', conttrollersPix.selectBoleto);
+routePaymentPagSeguro.post('/boleto', conttrollersPix.insertBoleto);

@@ -8,3 +8,4 @@ exports.routePaymentPagSeguro = routePaymentPagSeguro;
 const conttrollersPix = new ConttrollerPaymentPagSeguro_1.ConttrollersPaymentPagSeguro();
 routePaymentPagSeguro.post('/pix', conttrollersPix.insertPix);
 routePaymentPagSeguro.post('/boleto', conttrollersPix.insertBoleto);
+routePaymentPagSeguro.post('/card', conttrollersPix.insertCard);

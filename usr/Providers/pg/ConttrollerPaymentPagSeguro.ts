@@ -1,13 +1,14 @@
 import { Request, Response } from "express";
-import { TPaymentPix, TPaymentPagSeguroBoleto, TPaymentPagSeguroCard } from "../../Interfaces/IPagSeguro";
+import { TPaymentPagSeguroPix, TPaymentPagSeguroBoleto, TPaymentPagSeguroCard } from "../../Interfaces/IPagSeguro";
 const fetch = require('node-fetch')
 const authorization = '4D1D1C943B1B49468F2D0B00F5EE914E'
-const urlPagseguro = 'https://sandbox.api.pagseguro.com/orders'
+const urlPagseguroPix = 'https://sandbox.api.pagseguro.com/orders'
+const urlPagseguro = 'https://sandbox.api.pagseguro.com/charges'
 
 export class ConttrollersPaymentPagSeguro {
     async insertPix(request: Request, response: Response) {
-        const sales: TPaymentPix = request.body
-        let reqs = await fetch(urlPagseguro, {
+        const sales: TPaymentPagSeguroPix = request.body
+        let reqs = await fetch(urlPagseguroPix, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

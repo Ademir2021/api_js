@@ -12,12 +12,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ConttrollersPaymentPagSeguro = void 0;
 const fetch = require('node-fetch');
 const authorization = '4D1D1C943B1B49468F2D0B00F5EE914E';
-const urlPagseguro = 'https://sandbox.api.pagseguro.com/orders';
+const urlPagseguroPix = 'https://sandbox.api.pagseguro.com/orders';
+const urlPagseguro = 'https://sandbox.api.pagseguro.com/charges';
 class ConttrollersPaymentPagSeguro {
     insertPix(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
             const sales = request.body;
-            let reqs = yield fetch(urlPagseguro, {
+            let reqs = yield fetch(urlPagseguroPix, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

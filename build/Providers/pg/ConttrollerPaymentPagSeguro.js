@@ -17,52 +17,65 @@ const urlPagseguro = 'https://sandbox.api.pagseguro.com/charges';
 class ConttrollersPaymentPagSeguro {
     insertPix(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
-            const sales = request.body;
-            let reqs = yield fetch(urlPagseguroPix, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': authorization
-                },
-                body: JSON.stringify(sales)
-            });
-            let ress = yield reqs.json();
-            response.json(ress);
-            console.log(ress);
+            try {
+                const sales = request.body;
+                let reqs = yield fetch(urlPagseguroPix, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': authorization
+                    },
+                    body: JSON.stringify(sales)
+                });
+                let ress = yield reqs.json();
+                response.json(ress);
+            }
+            catch (err) {
+                console.log("Error Occurred ! " + err);
+            }
         });
     }
-    ;
     insertBoleto(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
-            const sales = request.body;
-            let reqs = yield fetch(urlPagseguro, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': authorization
-                },
-                body: JSON.stringify(sales)
-            });
-            let ress = yield reqs.json();
-            response.json(ress);
-            console.log(ress);
+            try {
+                const sales = request.body;
+                let reqs = yield fetch(urlPagseguro, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': authorization
+                    },
+                    body: JSON.stringify(sales)
+                });
+                let ress = yield reqs.json();
+                response.json(ress);
+                console.log(ress);
+            }
+            catch (err) {
+                console.log("Error Occurred ! " + err);
+            }
         });
     }
     ;
     insertCard(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
-            const sales = request.body;
-            let reqs = yield fetch(urlPagseguro, {
-                method: 'POST',
-                headers: {
-                    'Authorization': authorization,
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(sales)
-            });
-            let ress = yield reqs.json();
-            response.json(ress);
-            console.log(ress);
+            try {
+                const sales = request.body;
+                let reqs = yield fetch(urlPagseguro, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': authorization,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(sales)
+                });
+                let ress = yield reqs.json();
+                response.json(ress);
+                console.log(ress);
+            }
+            catch (err) {
+                console.log("Error Occurred ! " + err);
+            }
         });
     }
 }

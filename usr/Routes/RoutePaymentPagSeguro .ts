@@ -2,10 +2,11 @@ import { Router } from "express"
 import { ConttrollersPaymentPagSeguro } from "../Providers/pg/ConttrollerPaymentPagSeguro";
 
 const routePaymentPagSeguro = Router();
-const conttrollersPix = new ConttrollersPaymentPagSeguro()
+const conttrollersPaymentPagSeguro = new ConttrollersPaymentPagSeguro()
 
-routePaymentPagSeguro .post('/pix', conttrollersPix.insertPix)
-routePaymentPagSeguro .post('/boleto', conttrollersPix.insertBoleto)
-routePaymentPagSeguro .post('/card', conttrollersPix.insertCard)
+routePaymentPagSeguro.post('/pix', conttrollersPaymentPagSeguro.insertPix)
+routePaymentPagSeguro.post('/boleto', conttrollersPaymentPagSeguro.insertBoleto)
+routePaymentPagSeguro.post('/card', conttrollersPaymentPagSeguro.insertCard)
+routePaymentPagSeguro.get('/publickey', conttrollersPaymentPagSeguro.publicKeyPagSeguro)
 
 export { routePaymentPagSeguro }

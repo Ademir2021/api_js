@@ -13,7 +13,7 @@ exports.ConttrollersPaymentPagSeguro = void 0;
 const fetch = require('node-fetch');
 const authorization = '4D1D1C943B1B49468F2D0B00F5EE914E';
 const urlPagseguroPix = 'https://sandbox.api.pagseguro.com/orders';
-const urlPagseguro = 'https://sandbox.api.pagseguro.com/charges';
+const urlPagseguro = 'https://sandbox.api.pagseguro.com/orders';
 class ConttrollersPaymentPagSeguro {
     insertPix(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -29,12 +29,15 @@ class ConttrollersPaymentPagSeguro {
                 });
                 let ress = yield reqs.json();
                 response.json(ress);
+                console.log(ress);
+                console.log(sales);
             }
             catch (err) {
                 console.log("Error Occurred ! " + err);
             }
         });
     }
+    ;
     insertBoleto(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
@@ -50,6 +53,7 @@ class ConttrollersPaymentPagSeguro {
                 let ress = yield reqs.json();
                 response.json(ress);
                 console.log(ress);
+                console.log(sales);
             }
             catch (err) {
                 console.log("Error Occurred ! " + err);
@@ -72,6 +76,28 @@ class ConttrollersPaymentPagSeguro {
                 let ress = yield reqs.json();
                 response.json(ress);
                 console.log(ress);
+                console.log(sales);
+            }
+            catch (err) {
+                console.log("Error Occurred ! " + err);
+            }
+        });
+    }
+    ;
+    publicKeyPagSeguro(request, response) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                let reqs = yield fetch('https://sandbox.api.pagseguro.com/public-keys', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': authorization,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ type: 'card' })
+                });
+                let ress = yield reqs.json();
+                response.json(ress);
+                // console.log(ress);
             }
             catch (err) {
                 console.log("Error Occurred ! " + err);

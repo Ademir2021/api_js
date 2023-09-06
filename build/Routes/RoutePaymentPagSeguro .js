@@ -10,3 +10,4 @@ routePaymentPagSeguro.post('/pix', conttrollersPaymentPagSeguro.insertPix);
 routePaymentPagSeguro.post('/boleto', conttrollersPaymentPagSeguro.insertBoleto);
 routePaymentPagSeguro.post('/card', conttrollersPaymentPagSeguro.insertCard);
 routePaymentPagSeguro.get('/publickey', conttrollersPaymentPagSeguro.publicKeyPagSeguro);
+routePaymentPagSeguro.get('/pay', conttrollersPaymentPagSeguro.payPagSeguro);

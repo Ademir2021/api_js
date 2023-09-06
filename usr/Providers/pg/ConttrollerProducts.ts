@@ -14,7 +14,7 @@ export class ConttrollersProducts {
 
     async select(request: Request, response: Response) {
         try {
-            const res = await client.query("SELECT * FROM products")
+            const res = await client.query("SELECT * FROM products order by id_product")
             response.json(res.rows);
         } catch (err) {
             console.log("Error Occurred ! " + err)

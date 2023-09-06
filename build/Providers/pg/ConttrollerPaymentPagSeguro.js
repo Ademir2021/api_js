@@ -68,15 +68,16 @@ class ConttrollersPaymentPagSeguro {
                 let reqs = yield fetch(urlPagseguro, {
                     method: 'POST',
                     headers: {
+                        'accept': 'application/json',
                         'Authorization': authorization,
-                        'Content-Type': 'application/json'
+                        'content-Type': 'application/json'
                     },
                     body: JSON.stringify(sales)
                 });
                 let ress = yield reqs.json();
                 response.json(ress);
                 console.log(ress);
-                console.log(sales);
+                // console.log(sales)
             }
             catch (err) {
                 console.log("Error Occurred ! " + err);
@@ -102,6 +103,25 @@ class ConttrollersPaymentPagSeguro {
             catch (err) {
                 console.log("Error Occurred ! " + err);
             }
+        });
+    }
+    payPagSeguro(request, response) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const settings = {
+                async: true,
+                crossDomain: true,
+                url: 'https://sandbox.api.pagseguro.com/orders',
+                method: 'POST',
+                headers: {
+                    accept: 'application/json',
+                    Authorization: '4D1D1C943B1B49468F2D0B00F5EE914E',
+                    'content-type': 'application/json'
+                },
+                processData: false,
+                data: '{"customer":{"tax_id":"12345678909","name":"Jose da Silva","email":"email@test.com"},"charges":[{"amount":{"value":600,"currency":"BRL"},"payment_method":{"card":{"exp_month":11,"exp_year":2026,"security_code":"123","number":"4539620659922097","store":true},"type":"CREDIT_CARD","installments":1,"capture":true,"soft_descriptor":"My Store"},"reference_id":"CARD_47818C5D-3307-42FA-88AC-7F70597192D8","description":"My store"}],"reference_id":"ex-00001","items":[{"name":"nome do objeto","quantity":1,"unit_amount":500}]}'
+            };
+            response.json(settings);
+            console.log(settings);
         });
     }
 }

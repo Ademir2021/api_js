@@ -26,7 +26,7 @@ class ConttrollersProducts {
     select(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const res = yield connect_1.client.query("SELECT * FROM products");
+                const res = yield connect_1.client.query("SELECT * FROM products order by id_product");
                 response.json(res.rows);
             }
             catch (err) {

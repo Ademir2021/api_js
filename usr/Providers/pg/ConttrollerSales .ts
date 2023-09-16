@@ -15,7 +15,7 @@ export class ConttrollersSales {
     async select(request: Request, response: Response) {
         try {
             let id = 0
-            const res_sale_ = await client.query("SELECT * FROM sales")
+            const res_sale_ = await client.query("SELECT * FROM sales ORDER BY id_sale")
             const sales = res_sale_.rows
             response.send(sales);
             const res_itens_sale = await client.query("SELECT * FROM itens_sale")

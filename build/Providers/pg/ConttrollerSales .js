@@ -27,7 +27,7 @@ class ConttrollersSales {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 let id = 0;
-                const res_sale_ = yield connect_1.client.query("SELECT * FROM sales");
+                const res_sale_ = yield connect_1.client.query("SELECT * FROM sales ORDER BY id_sale");
                 const sales = res_sale_.rows;
                 response.send(sales);
                 const res_itens_sale = yield connect_1.client.query("SELECT * FROM itens_sale");

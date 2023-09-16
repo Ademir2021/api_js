@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ConttrollersPaymentPagSeguro = void 0;
+const connect_1 = require("../../connect");
 const fetch = require('node-fetch');
 const authorization = '4D1D1C943B1B49468F2D0B00F5EE914E';
 const urlPagseguroPix = 'https://sandbox.api.pagseguro.com/orders';
@@ -38,6 +39,21 @@ class ConttrollersPaymentPagSeguro {
         });
     }
     ;
+    insertDirectPaymentHandle(request, response) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const sales = request.body;
+                yield connect_1.client.query;
+                const res_num_sale = yield connect_1.client.query("SELECT MAX(id_sale) FROM sales");
+                sales.reference_id = res_num_sale.rows[0].max + 1;
+                // console.log(sales)
+                response.json(sales);
+            }
+            catch (err) {
+                console.log("Error Occurred ! " + err);
+            }
+        });
+    }
     insertBoleto(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
             try {

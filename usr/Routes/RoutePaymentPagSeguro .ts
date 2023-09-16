@@ -10,4 +10,6 @@ routePaymentPagSeguro.post('/card', conttrollersPaymentPagSeguro.insertCard)
 routePaymentPagSeguro.get('/publickey', conttrollersPaymentPagSeguro.publicKeyPagSeguro)
 routePaymentPagSeguro.get('/pay', conttrollersPaymentPagSeguro.payPagSeguro)
 
+routePaymentPagSeguro.post('/direct_payment', conttrollersPaymentPagSeguro.insertDirectPaymentHandle)
+
 export { routePaymentPagSeguro }

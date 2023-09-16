@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { client } from "../../connect"
 import { TPaymentPagSeguroPix, TPaymentPagSeguroBoleto, TPaymentPagSeguroCard } from "../../Interfaces/IPagSeguro";
 const fetch = require('node-fetch')
 const authorization = '4D1D1C943B1B49468F2D0B00F5EE914E'
@@ -27,6 +28,23 @@ export class ConttrollersPaymentPagSeguro {
             console.log("Error Occurred ! " + err)
         }
     };
+
+    async insertDirectPaymentHandle(request: Request, response: Response) {
+        try {
+
+            const sales: TPaymentPagSeguroPix = request.body
+            await client.query
+            const res_num_sale = await client.query
+                ("SELECT MAX(id_sale) FROM sales");
+            sales.reference_id  = res_num_sale.rows[0].max + 1;
+
+            // console.log(sales)
+            response.json(sales)
+
+        } catch (err) {
+            console.log("Error Occurred ! " + err)
+        }
+    }
 
     async insertBoleto(request: Request, response: Response) {
 
@@ -96,15 +114,15 @@ export class ConttrollersPaymentPagSeguro {
             url: 'https://sandbox.api.pagseguro.com/orders',
             method: 'POST',
             headers: {
-              accept: 'application/json',
-              Authorization: '4D1D1C943B1B49468F2D0B00F5EE914E',
-              'content-type': 'application/json'
+                accept: 'application/json',
+                Authorization: '4D1D1C943B1B49468F2D0B00F5EE914E',
+                'content-type': 'application/json'
             },
             processData: false,
             data: '{"customer":{"tax_id":"12345678909","name":"Jose da Silva","email":"email@test.com"},"charges":[{"amount":{"value":600,"currency":"BRL"},"payment_method":{"card":{"exp_month":11,"exp_year":2026,"security_code":"123","number":"4539620659922097","store":true},"type":"CREDIT_CARD","installments":1,"capture":true,"soft_descriptor":"My Store"},"reference_id":"CARD_47818C5D-3307-42FA-88AC-7F70597192D8","description":"My store"}],"reference_id":"ex-00001","items":[{"name":"nome do objeto","quantity":1,"unit_amount":500}]}'
 
-          };
-          response.json(settings)
-          console.log(settings);
-        }
+        };
+        response.json(settings)
+        console.log(settings);
+    }
 }

@@ -25,9 +25,17 @@ class ConttrollersPersons {
     ;
     select(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
+            const { user_id } = request.params;
             try {
-                const res = yield connect_1.client.query("SELECT * FROM persons");
-                response.json(res.rows);
+                const res_ = yield connect_1.client.query("SELECT * FROM users WHERE  id = '" + user_id + "'");
+                if (res_.rows[0].privilege != 1) {
+                    const res = yield connect_1.client.query("SELECT * FROM persons where fk_id_user = '" + user_id + "'");
+                    response.json(res.rows);
+                }
+                else {
+                    const res = yield connect_1.client.query("SELECT * FROM persons");
+                    response.json(res.rows);
+                }
             }
             catch (err) {
                 console.log("Error Occurred ! " + err);

@@ -7,6 +7,6 @@ const routeSale = (0, express_1.Router)();
 exports.routeSale = routeSale;
 const conttrollersSales = new ConttrollerSales_1.ConttrollersSales();
 routeSale.get('/', conttrollersSales.index);
-routeSale.get('/sales', conttrollersSales.select);
+routeSale.get('/sales/:user_id', conttrollersSales.select);
 routeSale.get('/sale/:id', conttrollersSales.selectOneSale);
 routeSale.post('/sales', conttrollersSales.insert);

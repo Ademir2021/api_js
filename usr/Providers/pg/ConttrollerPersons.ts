@@ -13,9 +13,16 @@ export class ConttrollersPersons {
     };
 
     async select(request: Request, response: Response) {
+            const { user_id } = request.params
         try {
+            const res_ = await client.query("SELECT * FROM users WHERE  id = '"+user_id+"'")
+            if(res_.rows[0].privilege != 1){
+            const res = await client.query("SELECT * FROM persons where fk_id_user = '"+user_id+"'")
+            response.json(res.rows);
+            }else{
             const res = await client.query("SELECT * FROM persons")
             response.json(res.rows);
+            }
         } catch (err) {
             console.log("Error Occurred ! " + err)
         }

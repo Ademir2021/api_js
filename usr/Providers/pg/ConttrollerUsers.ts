@@ -14,17 +14,22 @@ export class ConttrollersUSers {
     async login(request: Request, response: Response) {
         try {
             const { username } = request.params
-            const res = await client.query("SELECT id, username, password FROM users WHERE username = '" + username + "' LIMIT(1)")
+            const res = await client.query("SELECT id, username, password, privilege FROM users WHERE username = '" + username + "' LIMIT(1)")
             response.json(res.rows);
         } catch (err) {
             response.json("Error Occurred !!" + err)
         }
     };
     async select(request: Request, response: Response) {
+        const { id } = request.params
         try {
-            let id = 0
+            const res_ = await client.query("SELECT * FROM users WHERE  id = '"+id+"'")
+            if(res_.rows[0].privilege != 1 ){
+                response.json(res_.rows)
+            }else{
             const res = await client.query("SELECT * FROM users")
             response.json(res.rows);
+            }
         } catch (err) {
             console.log("Error Occurred !!" + err)
         }

@@ -13,11 +13,20 @@ export class ConttrollersSales {
     };
 
     async select(request: Request, response: Response) {
+                const { user_id } = request.params
         try {
-            let id = 0
-            const res_sale_ = await client.query("SELECT * FROM sales ORDER BY id_sale")
-            const sales = res_sale_.rows
-            response.send(sales);
+
+            const res_ = await client.query("SELECT * FROM users WHERE  id = '"+user_id+"'")
+            if(res_.rows[0].privilege != 1){
+                const res_sale_ = await client.query("SELECT * FROM sales WHERE fk_name_user = '"+user_id+"' ORDER BY id_sale")
+                const sales = res_sale_.rows
+                response.send(sales);
+            }else{
+                const res_sale_ = await client.query("SELECT * FROM sales  ORDER BY id_sale")
+                const sales = res_sale_.rows
+                response.send(sales);
+
+            }
             const res_itens_sale = await client.query("SELECT * FROM itens_sale")
             const itens_sale = res_itens_sale.rows
             // console.table(itens_sale)

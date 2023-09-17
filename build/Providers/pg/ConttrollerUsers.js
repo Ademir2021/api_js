@@ -27,7 +27,7 @@ class ConttrollersUSers {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const { username } = request.params;
-                const res = yield connect_1.client.query("SELECT id, username, password FROM users WHERE username = '" + username + "' LIMIT(1)");
+                const res = yield connect_1.client.query("SELECT id, username, password, privilege FROM users WHERE username = '" + username + "' LIMIT(1)");
                 response.json(res.rows);
             }
             catch (err) {
@@ -38,10 +38,16 @@ class ConttrollersUSers {
     ;
     select(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
+            const { id } = request.params;
             try {
-                let id = 0;
-                const res = yield connect_1.client.query("SELECT * FROM users");
-                response.json(res.rows);
+                const res_ = yield connect_1.client.query("SELECT * FROM users WHERE  id = '" + id + "'");
+                if (res_.rows[0].privilege != 1) {
+                    response.json(res_.rows);
+                }
+                else {
+                    const res = yield connect_1.client.query("SELECT * FROM users");
+                    response.json(res.rows);
+                }
             }
             catch (err) {
                 console.log("Error Occurred !!" + err);

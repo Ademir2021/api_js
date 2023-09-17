@@ -7,7 +7,7 @@ const routeProduct = (0, express_1.Router)();
 exports.routeProduct = routeProduct;
 const conttrollersProducts = new ConttrollerProducts_1.ConttrollersProducts();
 routeProduct.get('/', conttrollersProducts.index);
-routeProduct.get('/products', conttrollersProducts.select);
+routeProduct.get('/products/:user_id', conttrollersProducts.select);
 routeProduct.get('/product/:id', conttrollersProducts.selectOneProduct);
 routeProduct.post('/products', conttrollersProducts.insert);
 routeProduct.put('/products/:id', conttrollersProducts.update);

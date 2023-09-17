@@ -10,7 +10,7 @@ exports.routeUser = routeUser;
 const conttrollersUSers = new ConttrollerUsers_1.ConttrollersUSers();
 routeUser.get('/', conttrollersUSers.index);
 routeUser.get('/login/:username', conttrollersUSers.login);
-routeUser.get('/users', conttrollersUSers.select);
+routeUser.get('/users/:id', conttrollersUSers.select);
 routeUser.get('/user/:id', conttrollersUSers.selectOneUser);
 routeUser.post('/users', conttrollersUSers.insert);
 routeUser.put('/users/:id', conttrollersUSers.update);

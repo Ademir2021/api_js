@@ -5,7 +5,7 @@ const routePerson = Router();
 const conttrollersPersons = new ConttrollersPersons()
 
 routePerson.get('/', conttrollersPersons.index)
-routePerson.get('/persons', conttrollersPersons.select)
+routePerson.get('/persons/:user_id', conttrollersPersons.select)
 routePerson.get('/person_users/:user_id', conttrollersPersons.selectOneUser)
 routePerson.get('/person/:id', conttrollersPersons.selectOne)
 routePerson.post('/persons', conttrollersPersons.insert)

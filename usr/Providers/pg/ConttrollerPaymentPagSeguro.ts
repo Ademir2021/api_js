@@ -12,7 +12,7 @@ export class ConttrollersPaymentPagSeguro {
 
         try {
             const sales: TPaymentPagSeguroPix = request.body
-            let reqs = await fetch(urlPagseguroPix, {
+            let reqs = await fetch(urlPagseguroPix, { 
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -31,13 +31,11 @@ export class ConttrollersPaymentPagSeguro {
 
     async insertDirectPaymentHandle(request: Request, response: Response) {
         try {
-
             const sales: TPaymentPagSeguroPix = request.body
             await client.query
             const res_num_sale = await client.query
                 ("SELECT MAX(id_sale) FROM sales");
             sales.reference_id  = res_num_sale.rows[0].max + 1;
-
             // console.log(sales)
             response.json(sales)
 

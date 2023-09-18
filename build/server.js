@@ -12,7 +12,7 @@ const RouteNotes_1 = require("./Routes/RouteNotes");
 const RoutePaymentPagSeguro_1 = require("./Routes/RoutePaymentPagSeguro ");
 const cors = require('cors');
 const app = (0, express_1.default)();
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express_1.default.json());
 app.use(RouteUsers_1.routeUser);

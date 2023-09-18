@@ -6,6 +6,7 @@ const conttrollersProducts = new ConttrollersProducts()
 
 routeProduct.get('/', conttrollersProducts.index)
 routeProduct.get('/products/:user_id', conttrollersProducts.select)
+routeProduct.get('/products_home', conttrollersProducts.selectHome)
 routeProduct.get('/product/:id', conttrollersProducts.selectOneProduct)
 routeProduct.post('/products', conttrollersProducts.insert)
 routeProduct.put('/products/:id', conttrollersProducts.update)

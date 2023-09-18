@@ -11,6 +11,15 @@ export class ConttrollersProducts {
             console.log("Error Occurred !" + err)
         }
     };
+    async selectHome(request: Request, response: Response) {
+        try{
+            const res = await client.query("SELECT * FROM products ORDER BY descric_product");
+            response.json(res.rows);
+
+        }catch(err){
+            console.log("Error Ocurred ! " + err)
+        }
+    }
 
     async select(request: Request, response: Response) {
             const { user_id } = request.params

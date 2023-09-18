@@ -23,6 +23,17 @@ class ConttrollersProducts {
         });
     }
     ;
+    selectHome(request, response) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const res = yield connect_1.client.query("SELECT * FROM products ORDER BY descric_product");
+                response.json(res.rows);
+            }
+            catch (err) {
+                console.log("Error Ocurred ! " + err);
+            }
+        });
+    }
     select(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
             const { user_id } = request.params;

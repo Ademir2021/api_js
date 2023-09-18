@@ -43,6 +43,7 @@
 - heroku help
 # login e integração
 - `heroku login ` ok
+- `conecte no heroku e crie um novo projeto ex: api-js`
 - `heroku git:remote -a app-sales`
 - `git add .`
 - `git commit -am "make it better"`

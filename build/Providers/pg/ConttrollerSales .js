@@ -28,7 +28,7 @@ class ConttrollersSales {
             const { user_id } = request.params;
             try {
                 const res_ = yield connect_1.client.query("SELECT * FROM users WHERE  id = '" + user_id + "'");
-                if (res_.rows[0].privilege != 1) {
+                if (res_.rows[0].privilege != 2) {
                     const res_sale_ = yield connect_1.client.query("SELECT * FROM sales WHERE fk_name_user = '" + user_id + "' ORDER BY id_sale");
                     const sales = res_sale_.rows;
                     response.send(sales);

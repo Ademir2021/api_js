@@ -25,7 +25,7 @@ export class ConttrollersProducts {
             const { user_id } = request.params
         try {
             const res_ = await client.query("SELECT * FROM users WHERE  id = '"+user_id+"'")
-            if(res_.rows[0].privilege === '1'){
+            if(res_.rows[0].privilege === '2'){
             const res = await client.query("SELECT * FROM products ORDER BY id_product")
             response.json(res.rows);
             }

@@ -41,7 +41,7 @@ class ConttrollersUSers {
             const { id } = request.params;
             try {
                 const res_ = yield connect_1.client.query("SELECT * FROM users WHERE  id = '" + id + "'");
-                if (res_.rows[0].privilege != 1) {
+                if (res_.rows[0].privilege != 2) {
                     response.json(res_.rows);
                 }
                 else {

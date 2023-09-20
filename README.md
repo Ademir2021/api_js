@@ -6,7 +6,7 @@
 
 - `Integrado com banco de dados Postgres`
 
-## nossa API tem finalidadede controlar a gestão das compras on-line.
+## Nossa API tem finalidadede controlar a gestão das compras on-line.
 
 # Entities controladas
 - Users [X] `controle dos users`

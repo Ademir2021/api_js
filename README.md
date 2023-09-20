@@ -6,7 +6,7 @@
 
 - `Integrado com banco de dados Postgres`
 
-## nossa API atende os requisito REST e tema finalidade controlar gestão de Cempras on-line
+## nossa API tem finalidade controlar gestão de cempras on-line.
 
 # Entities controladas
 - Users [X] `controle dos users`

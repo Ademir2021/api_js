@@ -1,7 +1,6 @@
 /node_modules
 .test.ts
-.script.sh
-.api.sh
+git.sh
+api.sh
 .env
-.note.MD
-.README.md
+note.MD

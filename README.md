@@ -1,6 +1,6 @@
 # API Gestão de Vendas
 
-- `API imprementa app-manag-sales`
+- `API implementa app-manag-sales`
 
 - `Desenvolvido com Js/Typescript`
 

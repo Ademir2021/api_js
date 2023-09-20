@@ -1,9 +1,7 @@
-.env.nuvem
 /node_modules
 test.ts
 .script.sh
 .api.sh
-.env.examples
-.env.nuvem
+.env
 .note.MD
 .README.md

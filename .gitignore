@@ -1,5 +1,5 @@
 /node_modules
-test.ts
+.test.ts
 .script.sh
 .api.sh
 .env

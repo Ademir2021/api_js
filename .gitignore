@@ -2,6 +2,6 @@
 test.ts
 .script.sh
 .api.sh
-env
+.env
 .note.MD
 .README.md

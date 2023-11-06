@@ -7,4 +7,5 @@ export type IProduct = {
     fk_brand:number;
     fk_sector:number;
     bar_code:string;
+    image:string;
 }

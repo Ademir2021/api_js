@@ -1,4 +1,5 @@
 ##bin/bash
 clear
-cp -rf build/ ../api-centroinfo/build
+tsc
+cp -rf build/ ../api-centroinfo
 echo 'build api-centroinfo gerada com sucesso'

@@ -46,14 +46,14 @@ export class ConttrollersProducts {
 
     async insert(request: Request, response: Response) {
         try {
-            const { descric_product, val_max_product, val_min_product, fk_brand, fk_sector, bar_code }: IProduct = <IProduct>request.body
+            const { descric_product, val_max_product, val_min_product, fk_brand, fk_sector, bar_code, image }: IProduct = <IProduct>request.body
             const res_bar_code = await client.query("SELECT bar_code FROM products WHERE bar_code = '" + bar_code + "' LIMIT(1)")
             try {
                 bar_code !== res_bar_code.rows[0].bar_code
                 response.json("Código de barras já existe")
             } catch {
-                await client.query('INSERT INTO products("descric_product", "val_max_product", "val_min_product", "fk_brand", "fk_sector", "bar_code") VALUES ('
-                + "'" + descric_product + "', '" + val_max_product + "', '" + val_min_product + "', '" + fk_brand + "', '" + fk_sector + "', '" + bar_code + "')")
+                await client.query('INSERT INTO products("descric_product", "val_max_product", "val_min_product", "fk_brand", "fk_sector", "bar_code", "image") VALUES ('
+                + "'" + descric_product + "', '" + val_max_product + "', '" + val_min_product + "', '" + fk_brand + "', '" + fk_sector + "', '" + bar_code + "', '"+image+"')")
                 const res = await client.query("SELECT descric_product FROM products WHERE descric_product = '" + descric_product + "' LIMIT(1)")
                 response.json("Registrado com sucesso: " + res.rows[0].descric_product)
             }
@@ -65,9 +65,9 @@ export class ConttrollersProducts {
     async update(request: Request, response: Response) {
         try {
             const id = request.params.id
-            const { descric_product, val_max_product, val_min_product, fk_brand, fk_sector, bar_code }: IProduct = <IProduct>request.body
+            const { descric_product, val_max_product, val_min_product, fk_brand, fk_sector, bar_code, image }: IProduct = <IProduct>request.body
             await client.query("UPDATE products SET updated_at = now(), descric_product = '" + descric_product + "', val_max_product = '"
-            + val_max_product + "', val_min_product ='" + val_min_product + "', fk_brand = '" + fk_brand + "', fk_sector = '" + fk_sector + "', bar_code = '" + bar_code + "' WHERE id_product = '" + id + "'")
+            + val_max_product + "', val_min_product ='" + val_min_product + "', fk_brand = '" + fk_brand + "', fk_sector = '" + fk_sector + "', bar_code = '" + bar_code + "', '"+image+"' = image WHERE id_product = '" + id + "'")
             response.json("Atualizado com sucesso!")
         } catch (err) {
             console.log("Error Occurred ! " + err)

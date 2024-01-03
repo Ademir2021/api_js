@@ -9,3 +9,8 @@ export type IProduct = {
     bar_code:string;
     image:string;
 }
+
+export type IBrand = {
+    id:number;
+    name:string;
+}

@@ -1,0 +1,14 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.routePaymentPagSeguro = void 0;
+const express_1 = require("express");
+const ConttrollerPaymentPagSeguro_1 = require("../Providers/pg/ConttrollerPaymentPagSeguro");
+const routePaymentPagSeguro = (0, express_1.Router)();
+exports.routePaymentPagSeguro = routePaymentPagSeguro;
+const conttrollersPaymentPagSeguro = new ConttrollerPaymentPagSeguro_1.ConttrollersPaymentPagSeguro();
+routePaymentPagSeguro.post('/pix', conttrollersPaymentPagSeguro.insertPix);
+routePaymentPagSeguro.post('/boleto', conttrollersPaymentPagSeguro.insertBoleto);
+routePaymentPagSeguro.post('/card', conttrollersPaymentPagSeguro.insertCard);
+routePaymentPagSeguro.get('/publickey', conttrollersPaymentPagSeguro.publicKeyPagSeguro);
+routePaymentPagSeguro.get('/pay', conttrollersPaymentPagSeguro.payPagSeguro);
+routePaymentPagSeguro.post('/direct_payment', conttrollersPaymentPagSeguro.insertDirectPaymentHandle);

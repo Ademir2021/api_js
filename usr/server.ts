@@ -9,9 +9,9 @@ import { routePaymentPagSeguro } from './Routes/RoutePaymentPagSeguro';
 import { routeBrand } from './Routes/RouteBrands';
 import { routeSector } from './Routes/RouteSector';
 
-const cors = require('cors')
+const cors = require('cors');
 const app = express();
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());

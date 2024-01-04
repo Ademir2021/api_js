@@ -1,10 +1,8 @@
 import { Request, Response } from "express"
 import { client } from "../../connect"
-// import { IBrand } from "../../Interfaces/IProduct"
-
 
 export class ConttrollerBrands {
-
+    
     async index(request: Request, response: Response) {
         try {
             response.status(200).json({ status: 'sucesss' })
@@ -22,5 +20,4 @@ export class ConttrollerBrands {
             console.log("Error Ocurred ! " + err)
         }
     }
-
 }

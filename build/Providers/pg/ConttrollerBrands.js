@@ -11,7 +11,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ConttrollerBrands = void 0;
 const connect_1 = require("../../connect");
-// import { IBrand } from "../../Interfaces/IProduct"
 class ConttrollerBrands {
     index(request, response) {
         return __awaiter(this, void 0, void 0, function* () {

@@ -11,6 +11,7 @@ export class ConttrollersUSers {
             console.log("Error Occurred !!" + err)
         }
     };
+
     async login(request: Request, response: Response) {
         try {
             const { username } = request.params
@@ -20,6 +21,7 @@ export class ConttrollersUSers {
             response.json("Error Occurred !!" + err)
         }
     };
+
     async select(request: Request, response: Response) {
         const { id } = request.params
         try {
@@ -61,6 +63,7 @@ export class ConttrollersUSers {
             response.json("Error Occurred !" + err)
         }
     };
+
     async update(request: Request, response: Response) {
         try {
             const id = request.params.id
@@ -71,6 +74,7 @@ export class ConttrollersUSers {
             response.json("Error Ocorred !!: " + err)
         }
     };
+    
     async delete(request: Request, response: Response) {
         try {
             const id = request.params.id

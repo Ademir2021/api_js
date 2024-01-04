@@ -11,23 +11,24 @@ export class ConttrollersProducts {
             console.log("Error Occurred !" + err)
         }
     };
+    
     async selectHome(request: Request, response: Response) {
-        try{
+        try {
             const res = await client.query("SELECT * FROM products ORDER BY descric_product");
             response.json(res.rows);
 
-        }catch(err){
+        } catch (err) {
             console.log("Error Ocurred ! " + err)
         }
-    }
+    };
 
     async select(request: Request, response: Response) {
-            const { user_id } = request.params
+        const { user_id } = request.params
         try {
-            const res_ = await client.query("SELECT * FROM users WHERE  id = '"+user_id+"'")
-            if(res_.rows[0].privilege === '2'){
-            const res = await client.query("SELECT * FROM products ORDER BY id_product")
-            response.json(res.rows);
+            const res_ = await client.query("SELECT * FROM users WHERE  id = '" + user_id + "'")
+            if (res_.rows[0].privilege === '2') {
+                const res = await client.query("SELECT * FROM products ORDER BY id_product")
+                response.json(res.rows);
             }
         } catch (err) {
             console.log("Error Occurred ! " + err)
@@ -53,7 +54,7 @@ export class ConttrollersProducts {
                 response.json("Código de barras já existe")
             } catch {
                 await client.query('INSERT INTO products("descric_product", "val_max_product", "val_min_product", "fk_brand", "fk_sector", "bar_code", "image") VALUES ('
-                + "'" + descric_product + "', '" + val_max_product + "', '" + val_min_product + "', '" + fk_brand + "', '" + fk_sector + "', '" + bar_code + "', '"+image+"')")
+                    + "'" + descric_product + "', '" + val_max_product + "', '" + val_min_product + "', '" + fk_brand + "', '" + fk_sector + "', '" + bar_code + "', '" + image + "')")
                 const res = await client.query("SELECT descric_product FROM products WHERE descric_product = '" + descric_product + "' LIMIT(1)")
                 response.json("Registrado com sucesso: " + res.rows[0].descric_product)
             }
@@ -67,13 +68,13 @@ export class ConttrollersProducts {
             const id = request.params.id
             const { descric_product, val_max_product, val_min_product, fk_brand, fk_sector, bar_code, image }: IProduct = <IProduct>request.body
             await client.query("UPDATE products SET updated_at = now(), descric_product = '" + descric_product + "', val_max_product = '"
-            + val_max_product + "', val_min_product ='" + val_min_product + "', fk_brand = '" + fk_brand + "', fk_sector = '" + fk_sector + "', bar_code = '" + bar_code + "', image = '"+image+"' WHERE id_product = '" + id + "'")
+                + val_max_product + "', val_min_product ='" + val_min_product + "', fk_brand = '" + fk_brand + "', fk_sector = '" + fk_sector + "', bar_code = '" + bar_code + "', image = '" + image + "' WHERE id_product = '" + id + "'")
             response.json("Atualizado com sucesso!")
         } catch (err) {
             console.log("Error Occurred ! " + err)
         }
     };
-    
+
     async delete(request: Request, response: Response) {
         try {
             const id = request.params.id

@@ -13,15 +13,15 @@ export class ConttrollersSales {
     };
 
     async select(request: Request, response: Response) {
-                const { user_id } = request.params
+        const { user_id } = request.params
         try {
 
-            const res_ = await client.query("SELECT * FROM users WHERE  id = '"+user_id+"'")
-            if(res_.rows[0].privilege != 2){
-                const res_sale_ = await client.query("SELECT * FROM sales WHERE fk_name_user = '"+user_id+"' ORDER BY id_sale")
+            const res_ = await client.query("SELECT * FROM users WHERE  id = '" + user_id + "'")
+            if (res_.rows[0].privilege != 2) {
+                const res_sale_ = await client.query("SELECT * FROM sales WHERE fk_name_user = '" + user_id + "' ORDER BY id_sale")
                 const sales = res_sale_.rows
                 response.send(sales);
-            }else{
+            } else {
                 const res_sale_ = await client.query("SELECT * FROM sales  ORDER BY id_sale")
                 const sales = res_sale_.rows
                 response.send(sales);
@@ -43,8 +43,8 @@ export class ConttrollersSales {
             response.send(sales);
             const res_itens_sale = await client.query("SELECT * FROM itens_sale WHERE fk_sale = '" + id + "'")
             const itens_sale = res_itens_sale.rows
-            for(let i = 0; itens_sale.length > i; i++)(
-            console.log(itens_sale[i])
+            for (let i = 0; itens_sale.length > i; i++)(
+                console.log(itens_sale[i])
             )
         } catch (err) {
             console.log("Error Occurred ! " + err)

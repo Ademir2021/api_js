@@ -1,7 +1,5 @@
 import { Request, Response } from "express"
 import { client } from "../../connect"
-// import { IBrand } from "../../Interfaces/IProduct"
-
 
 export class ConttrollerSectors {
 
@@ -21,5 +19,5 @@ export class ConttrollerSectors {
         } catch (err) {
             console.log("Error Ocurred ! " + err)
         }
-    }
+    };
 }

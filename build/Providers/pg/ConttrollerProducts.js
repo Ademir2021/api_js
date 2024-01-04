@@ -34,6 +34,7 @@ class ConttrollersProducts {
             }
         });
     }
+    ;
     select(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
             const { user_id } = request.params;

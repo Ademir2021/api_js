@@ -95,7 +95,7 @@ class ConttrollersPersons {
             try {
                 const id = request.params.id;
                 const person = request.body;
-                yield connect_1.client.query("UPDATE persons SET updated_at =  now(), name_pers = '" + person.name_pers + "', cpf_pers = '" + person.cpf_pers + "', phone_pers ='" + person.phone_pers + "', address_pers ='" + person.address_pers + "', fk_name_filial = '" + person.fk_name_filial + "' WHERE id_person = '" + id + "'");
+                yield connect_1.client.query("UPDATE persons SET updated_at =  now(), name_pers = '" + person.name_pers + "', cpf_pers = '" + person.cpf_pers + "', phone_pers ='" + person.phone_pers + "', address_pers ='" + person.address_pers + "', bairro_pers = '" + person.bairro_pers + "', fk_cep = '" + person.fk_cep + "', fk_name_filial = '" + person.fk_name_filial + "' WHERE id_person = '" + id + "'");
                 response.json("Atualizado com sucesso ! ");
             }
             catch (err) {

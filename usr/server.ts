@@ -8,6 +8,8 @@ import { routeNote } from './Routes/RouteNotes';
 import { routePaymentPagSeguro } from './Routes/RoutePaymentPagSeguro';
 import { routeBrand } from './Routes/RouteBrands';
 import { routeSector } from './Routes/RouteSector';
+import { routeCep } from './Routes/RouteCeps';
+import { routeCity } from './Routes/RouteCities';
 
 const cors = require('cors');
 const app = express();
@@ -24,6 +26,8 @@ app.use(routeNote);
 app.use(routePaymentPagSeguro);
 app.use(routeBrand);
 app.use(routeSector);
+app.use(routeCep)
+app.use(routeCity)
 
 app.use(
     (error: Error, request: Request, response: Response, next: NextFunction) => {

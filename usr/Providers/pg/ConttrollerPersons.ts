@@ -56,7 +56,7 @@ export class ConttrollersPersons {
                 person.cpf_pers !== res_cpf.rows[0].cpf_pers
                 response.json("CPF pertence a outra Pessoa ! " + person.cpf_pers)
             } catch {
-                await client.query('INSERT INTO persons("name_pers", "cpf_pers", "phone_pers", "address_pers", "fk_name_filial", fk_id_user) VALUES (' + "'" + person.name_pers + "', '" + person.cpf_pers + "', '" + person.phone_pers + "', '" + person.address_pers + "', '" + person.fk_name_filial + "', '" + person.fk_id_user + "');")
+                await client.query('INSERT INTO persons(name_pers, cpf_pers, phone_pers, address_pers, fk_name_filial, fk_id_user, bairro_pers, fk_cep) VALUES (' + "'" + person.name_pers + "', '" + person.cpf_pers + "', '" + person.phone_pers + "', '" + person.address_pers + "', '" + person.fk_name_filial + "', '" + person.fk_id_user + "', '"+person.bairro_pers+"', '"+person.fk_cep+"');")
                 const res = await client.query("SELECT name_pers FROM persons WHERE name_pers = '" + person.name_pers + "' LIMIT(1)")
                 response.json("Registrado com sucesso: " + res.rows[0].name_pers)
             }

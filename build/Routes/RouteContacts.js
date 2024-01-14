@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.routeContact = void 0;
+const express_1 = require("express");
+const ConttrollerContacts_1 = require("../Providers/pg/ConttrollerContacts");
+const routeContact = (0, express_1.Router)();
+exports.routeContact = routeContact;
+const conttrollersContacts = new ConttrollerContacts_1.ConttrollersContacts();
+routeContact.get('/', conttrollersContacts.index);
+routeContact.post('/contact', conttrollersContacts.insert);

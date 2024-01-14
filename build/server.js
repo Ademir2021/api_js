@@ -14,6 +14,7 @@ const RouteBrands_1 = require("./Routes/RouteBrands");
 const RouteSector_1 = require("./Routes/RouteSector");
 const RouteCeps_1 = require("./Routes/RouteCeps");
 const RouteCities_1 = require("./Routes/RouteCities");
+const RouteContacts_1 = require("./Routes/RouteContacts");
 const cors = require('cors');
 const app = (0, express_1.default)();
 const PORT = process.env.PORT || 3000;
@@ -29,6 +30,7 @@ app.use(RouteBrands_1.routeBrand);
 app.use(RouteSector_1.routeSector);
 app.use(RouteCeps_1.routeCep);
 app.use(RouteCities_1.routeCity);
+app.use(RouteContacts_1.routeContact);
 app.use((error, request, response, next) => {
     return response.json({
         status: "Error",

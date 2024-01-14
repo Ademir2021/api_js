@@ -10,6 +10,7 @@ import { routeBrand } from './Routes/RouteBrands';
 import { routeSector } from './Routes/RouteSector';
 import { routeCep } from './Routes/RouteCeps';
 import { routeCity } from './Routes/RouteCities';
+import { routeContact } from './Routes/RouteContacts';
 
 const cors = require('cors');
 const app = express();
@@ -26,8 +27,9 @@ app.use(routeNote);
 app.use(routePaymentPagSeguro);
 app.use(routeBrand);
 app.use(routeSector);
-app.use(routeCep)
-app.use(routeCity)
+app.use(routeCep);
+app.use(routeCity);
+app.use(routeContact);
 
 app.use(
     (error: Error, request: Request, response: Response, next: NextFunction) => {

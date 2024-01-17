@@ -7,5 +7,6 @@ const routeCep = (0, express_1.Router)();
 exports.routeCep = routeCep;
 const conttrollersCeps = new ConttrollerCeps_1.ConttrollerCeps();
 routeCep.get('/', conttrollersCeps.index);
-// routeCep.get('/ceps/:id', conttrollersBrands.select)
+// routeCep.get('/ceps/:id', conttrollersCeps.select)
 routeCep.get('/ceps', conttrollersCeps.select);
+routeCep.post('/ceps', conttrollersCeps.insert);

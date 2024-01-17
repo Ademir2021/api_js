@@ -7,5 +7,5 @@ const routeCity = (0, express_1.Router)();
 exports.routeCity = routeCity;
 const conttrollersCities = new ConttrollerCities_1.ConttrollerCities();
 routeCity.get('/', conttrollersCities.index);
-// routeCity.get('/cities/:id', conttrollersCities.select)
+routeCity.get('/on_city/:id', conttrollersCities.selectOnCity);
 routeCity.get('/cities', conttrollersCities.select);

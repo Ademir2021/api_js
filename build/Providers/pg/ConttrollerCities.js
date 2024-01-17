@@ -34,5 +34,18 @@ class ConttrollerCities {
             }
         });
     }
+    selectOnCity(request, response) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const { id } = request.params;
+                const res = yield connect_1.client.query("SELECT name_city FROM cities WHERE id_city = '" + id + "' LIMIT(1)");
+                response.json(res.rows[0]);
+            }
+            catch (err) {
+                response.json("Error Occurred !!" + err);
+            }
+        });
+    }
+    ;
 }
 exports.ConttrollerCities = ConttrollerCities;

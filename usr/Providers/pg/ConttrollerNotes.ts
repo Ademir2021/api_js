@@ -20,7 +20,7 @@ export class ConttrollersNotes {
             const res_nota = await client.query("SELECT  *FROM nota WHERE nota = '" + num_nota + "'")
             const { nota, filial, comprador, cpf, endereco, telefone, usuario, email, emitida,
                     val_rec, desc_venda, total_venda, fantasia, f_endereco, cnpj, inscricao,
-                    f_telefone, f_email } = res_nota.rows[0];
+                    f_telefone, f_email, bairro, cep, uf, municipio } = res_nota.rows[0];
             const res_itens_nota = await client.query("SELECT  *FROM itens_nota WHERE id_venda = '" + num_nota + "'")
             const itens = res_itens_nota.rows
                 
@@ -106,12 +106,12 @@ export class ConttrollersNotes {
                         table: {
                             widths: ["50%", "50%"],
                             body: [
-                                [`Nome:${comprador}`, `Telefone(1):${telefone}`],
-                                [`CPF:${cpf}`, `Telefone(2):`],
-                                [`Endereço:${endereco}`,`Email:${email}`],
-                                ['Cidade: Barbosa Ferraz.', `NULL`],
-                                ['Estado: PR', `User:${usuario}`],
-                                [`CEP: 86960-000`, `Email: ${email}`]
+                                [`Nome:${comprador}`, `Telefone:${telefone}`],
+                                [`CPF:${cpf}`, `Telefone:`],
+                                [`Endereço:${endereco}`, `Bairro:${bairro}`],
+                                [`Cidade: ${municipio}`, `Email:${email}`],
+                                [`Estado: ${uf}`, `User:${usuario}`],
+                                [`CEP: ${cep}`, `Email: ${email}`]
                             ]
                         }
                     },

@@ -69,9 +69,9 @@ export class ConttrollersProducts {
             const { descric_product, val_max_product, val_min_product, fk_brand, fk_sector, bar_code, image }: IProduct = <IProduct>request.body
             await client.query("UPDATE products SET updated_at = now(), descric_product = '" + descric_product + "', val_max_product = '"
                 + val_max_product + "', val_min_product ='" + val_min_product + "', fk_brand = '" + fk_brand + "', fk_sector = '" + fk_sector + "', bar_code = '" + bar_code + "', image = '" + image + "' WHERE id_product = '" + id + "'")
-            response.json("Atualizado com sucesso!")
+            response.json("Item atualizado com sucesso!")
         } catch (err) {
-            console.log("Error Occurred ! " + err)
+            response.json("Error Occurred ! " + err)
         }
     };
 

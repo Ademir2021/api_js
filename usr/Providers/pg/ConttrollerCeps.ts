@@ -45,7 +45,7 @@ export class ConttrollerCeps {
                 response.json("CEP já Cadastrado ! " + cep.num_cep)
             } catch {
 
-                await client.query('INSERT INTO cities(name_city, uf, code_ibge, code_state_revenue, code_country, code_federal_revenue) VALUES (' + "'" + cep.city + "', '" + cep.uf + "', '"+ "0.0" +"' ,'" + 0.0 + "', '" + 1 + "', '"+0+"');")
+                await client.query('INSERT INTO cities(name_city, uf, code_ibge, code_state_revenue, code_country, code_federal_revenue) VALUES (' + "'" + cep.city + "', '" + cep.uf + "', '" + "0.0" + "' ,'" + 0.0 + "', '" + 1 + "', '" + 0 + "');")
 
                 const res_num_city = await client.query("SELECT MAX(id_city) FROM cities");
                 const num_city: number = res_num_city.rows[0].max;

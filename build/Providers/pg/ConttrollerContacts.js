@@ -29,7 +29,7 @@ class ConttrollersContacts {
                 const { name, email, phone, comments } = request.body;
                 yield connect_1.client.query('INSERT INTO contacts(name, email, phone, comments) VALUES (' + "'" + name + "', '" + email + "', '" + phone + "', '" + comments + "');");
                 const res_name = yield connect_1.client.query("SELECT name FROM contacts WHERE name = '" + name + "' LIMIT(1)");
-                response.json(res_name.rows[0].name + ' seu contato foi registrado com sucesso !');
+                response.json(res_name.rows[0].name + 'Seu contato foi registrado com sucesso !');
             }
             catch (err) {
                 response.json("Error Occurred !" + err);

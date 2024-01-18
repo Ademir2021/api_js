@@ -78,7 +78,7 @@ class ConttrollersUSers {
                     response.json("Email já cadastrado: " + username);
                 }
                 catch (_a) {
-                    yield connect_1.client.query('INSERT INTO users("name", "username", "password") VALUES (' + "'" + name + "', '" + username + "', '" + password + "');");
+                    yield connect_1.client.query('INSERT INTO users(name, username, password) VALUES (' + "'" + name + "', '" + username + "', '" + password + "');");
                     const res_name = yield connect_1.client.query("SELECT name FROM users WHERE name = '" + name + "' LIMIT(1)");
                     response.json("Registrado com successo: " + res_name.rows[0].name);
                 }

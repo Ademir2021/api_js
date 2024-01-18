@@ -70,7 +70,7 @@ class ConttrollersSales {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const itens = request.body;
-                yield connect_1.client.query('INSERT INTO sales("fk_name_pers", "disc_sale", "fk_name_filial", "fk_name_user") VALUES ('
+                yield connect_1.client.query('INSERT INTO sales(fk_name_pers, disc_sale, fk_name_filial, fk_name_user) VALUES ('
                     + "'"
                     + itens[0].fk_name_pers
                     + "','"
@@ -85,7 +85,7 @@ class ConttrollersSales {
                 for (let i = 1; itens.length > i; i++) {
                     // const sum_total_item: number = itens[i].amount * itens[i].valor;
                     const sum_total_item = 0;
-                    yield connect_1.client.query('INSERT INTO itens_sale("fk_sale", "fk_product", "amount_product", "val_product", "total_product") VALUES ('
+                    yield connect_1.client.query('INSERT INTO itens_sale(fk_sale, fk_product, amount_product, val_product, total_product) VALUES ('
                         + "'"
                         + num_sale
                         + "','"

@@ -55,7 +55,7 @@ export class ConttrollersSales {
         try {
             const itens: TSale[] = <TSale[]>request.body
             await client.query
-                ('INSERT INTO sales("fk_name_pers", "disc_sale", "fk_name_filial", "fk_name_user") VALUES ('
+                ('INSERT INTO sales(fk_name_pers, disc_sale, fk_name_filial, fk_name_user) VALUES ('
                     + "'"
                     + itens[0].fk_name_pers
                     + "','"
@@ -72,7 +72,7 @@ export class ConttrollersSales {
                 // const sum_total_item: number = itens[i].amount * itens[i].valor;
                 const sum_total_item: number = 0;
                 await client.query
-                    ('INSERT INTO itens_sale("fk_sale", "fk_product", "amount_product", "val_product", "total_product") VALUES ('
+                    ('INSERT INTO itens_sale(fk_sale, fk_product, amount_product, val_product, total_product) VALUES ('
                         + "'"
                         + num_sale
                         + "','"

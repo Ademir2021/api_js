@@ -60,6 +60,7 @@ class ConttrollersNotes {
                 }
                 const img = {
                     image: 'logo.png',
+                    alignment: 'center',
                     width: 136,
                     height: 48,
                     opacity: 0.9,
@@ -87,13 +88,13 @@ class ConttrollersNotes {
                                 body: [
                                     [
                                         img,
-                                        `${filial}
-                                     ${fantasia}
-                                CNPJ ${cnpj}
-                             INCRIC. ${inscricao}
-                                     ${f_endereco}
-                            TELEFONE ${f_telefone}
-                                     ${f_email}\n`,
+                                        `Filial: ${filial}
+                             Empresa: ${fantasia}
+                                Cnpj: ${cnpj}
+                   Incrição estadual: ${inscricao}
+                            Endereço: ${f_endereco}
+                            Telefone: ${f_telefone}
+                               Email: ${f_email}\n`,
                                         `\nNota de venda\n Nº 000${nota}
                                   \nEspécie\n[PE]`,
                                         `\n\nData de emissão\n\n${emitida.toLocaleString('pt-BR', { timezone: 'UTC' })}`,
@@ -154,7 +155,9 @@ class ConttrollersNotes {
                             table: {
                                 widths: ["*"],
                                 body: [
-                                    [`Observações: Está nota Nº ${nota} não possui valor fiscal`]
+                                    [`\nObservações:\n
+                                Está nota Nº ${nota} não possui valor fiscal\n
+                                Nota emitida on-line pelo site: https://www.centroinfo.com.br`]
                                 ]
                             }
                         }
@@ -167,9 +170,9 @@ class ConttrollersNotes {
                         columnsFilial: {
                             fontSize: 9,
                             fonts: "Helvetica-BoldOblique",
-                            alignment: "center",
+                            alignment: "left",
                             margin: 2,
-                            bold: true,
+                            bold: false,
                         },
                         columnsPerson: {
                             fontSize: 9,

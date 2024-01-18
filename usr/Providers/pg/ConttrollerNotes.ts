@@ -13,17 +13,17 @@ export class ConttrollersNotes {
             console.log("Error Occurred ! " + err)
         }
     };
-    
+
     async select(request: Request, response: Response) {
         try {
             const { num_nota } = request.params
             const res_nota = await client.query("SELECT  *FROM nota WHERE nota = '" + num_nota + "'")
             const { nota, filial, comprador, cpf, endereco, telefone, usuario, email, emitida,
-                    val_rec, desc_venda, total_venda, fantasia, f_endereco, cnpj, inscricao,
-                    f_telefone, f_email, bairro, cep, uf, municipio } = res_nota.rows[0];
+                val_rec, desc_venda, total_venda, fantasia, f_endereco, cnpj, inscricao,
+                f_telefone, f_email, bairro, cep, uf, municipio } = res_nota.rows[0];
             const res_itens_nota = await client.query("SELECT  *FROM itens_nota WHERE id_venda = '" + num_nota + "'")
             const itens = res_itens_nota.rows
-                
+
             const body = [];
 
             const columnsTitle = [
@@ -52,6 +52,7 @@ export class ConttrollersNotes {
 
             const img = {
                 image: 'logo.png',
+                alignment:'center',
                 width: 136,
                 height: 48,
                 opacity: 0.9,
@@ -83,24 +84,23 @@ export class ConttrollersNotes {
                             body: [
                                 [
                                     img,
-                                    `${filial}
-                                     ${fantasia}
-                                CNPJ ${cnpj}
-                             INCRIC. ${inscricao}
-                                     ${f_endereco}
-                            TELEFONE ${f_telefone}
-                                     ${f_email}\n`,
-                                   `\nNota de venda\n Nº 000${nota}
+                             `Filial: ${filial}
+                             Empresa: ${fantasia}
+                                Cnpj: ${cnpj}
+                   Incrição estadual: ${inscricao}
+                            Endereço: ${f_endereco}
+                            Telefone: ${f_telefone}
+                               Email: ${f_email}\n`,
+                                    `\nNota de venda\n Nº 000${nota}
                                   \nEspécie\n[PE]`,
-                                   `\n\nData de emissão\n\n${
-                                    emitida.toLocaleString('pt-BR', { timezone: 'UTC' })}`,
+                                    `\n\nData de emissão\n\n${emitida.toLocaleString('pt-BR', { timezone: 'UTC' })}`,
                                 ]
                             ]
                         }
                     },
                     {
                         text: '\nCLIENTE/DESTINATÁRIO', style: 'title'
-                     },
+                    },
                     {
                         style: 'columnsPerson',
                         table: {
@@ -151,7 +151,9 @@ export class ConttrollersNotes {
                         table: {
                             widths: ["*"],
                             body: [
-                                [`Observações: Está nota Nº ${nota} não possui valor fiscal`]
+                                [`\nObservações:\n
+                                Está nota Nº ${nota} não possui valor fiscal\n
+                                Nota emitida on-line pelo site: https://www.centroinfo.com.br`]
                             ]
                         }
                     }
@@ -165,9 +167,9 @@ export class ConttrollersNotes {
                     columnsFilial: {
                         fontSize: 9,
                         fonts: "Helvetica-BoldOblique",
-                        alignment: "center",
+                        alignment: "left",
                         margin: 2,
-                        bold: true,
+                        bold: false,
                     },
                     columnsPerson: {
                         fontSize: 9,

@@ -15,6 +15,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ConttrollersContacts = void 0;
 const connect_1 = require("../../connect");
 const nodemailer_1 = __importDefault(require("nodemailer"));
+require('dotenv').config();
+const user_email = process.env.USER_EMAIL;
+const pass_email = process.env.PASS_EMAIL;
 function sendMail(name, email, phone, comments) {
     return __awaiter(this, void 0, void 0, function* () {
         let transporter = nodemailer_1.default.createTransport({
@@ -23,12 +26,13 @@ function sendMail(name, email, phone, comments) {
             port: 587,
             secure: false,
             auth: {
-                user: "ademir_gre@hotmail.com",
-                pass: "873700xla"
+                user: user_email,
+                pass: pass_email
             },
             // tls: {
             //     ciphers: 'SSLv3',
             // },
+            ignoreTLS: true,
         });
         yield transporter.sendMail({
             from: "ademir_gre@hotmail.com",
@@ -43,9 +47,9 @@ function sendMail(name, email, phone, comments) {
                 + "<br><br><b>Agradecemos pelo seu contato, em breve estaremos em contato!</b>"
                 + "<br><br><b>Atentamente:</b> Ademir Souza de Almeida"
         }).then((message) => {
-            // console.log(message)
+            console.log(message);
         }).catch((err) => {
-            // console.log(err)
+            console.log(err);
         });
     });
 }

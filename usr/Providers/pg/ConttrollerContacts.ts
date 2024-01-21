@@ -1,6 +1,7 @@
 import { Request, Response } from "express"
 import { client } from "../../connect"
 import nodemailer from "nodemailer";
+require('dotenv').config()
 // var smtpTransport = require('nodemailer-smtp-transport');
 
 type TContact = {
@@ -10,6 +11,9 @@ type TContact = {
     comments: string;
 }
 
+const user_email = process.env.USER_EMAIL
+const pass_email = process.env.PASS_EMAIL
+
 async function sendMail(name: string, email: string, phone: string, comments: string) {
     let transporter = nodemailer.createTransport({
         service: "hotmail",
@@ -17,12 +21,13 @@ async function sendMail(name: string, email: string, phone: string, comments: st
         port: 587,
         secure: false,
         auth: {
-            user: "ademir_gre@hotmail.com",
-            pass: "873700xla"
+            user: user_email,
+            pass: pass_email
         },
         // tls: {
         //     ciphers: 'SSLv3',
         // },
+        ignoreTLS: false,
     });
     await transporter.sendMail({
         from: "ademir_gre@hotmail.com",
@@ -30,19 +35,19 @@ async function sendMail(name: string, email: string, phone: string, comments: st
         cc: "centroserra@gmail.com," + email,
         subject: "Contato: centroinfo.com.br",
         html: "<b>Novo contato:</b>"
-        + "<br><b>Cliente</b> " + name
-        + "<br><b>Telefone:</b> " + phone
-        + "<br><b>Email:</b> " + email
-        + "<br><b>Assunto:</b> " + comments
-        + "<br><br><b>Agradecemos pelo seu contato, em breve estaremos em contato!</b>"
-        + "<br><br><b>Atentamente:</b> Ademir Souza de Almeida"
+            + "<br><b>Cliente</b> " + name
+            + "<br><b>Telefone:</b> " + phone
+            + "<br><b>Email:</b> " + email
+            + "<br><b>Assunto:</b> " + comments
+            + "<br><br><b>Agradecemos pelo seu contato, em breve estaremos em contato!</b>"
+            + "<br><br><b>Atentamente:</b> Ademir Souza de Almeida"
     }).then((message: any) => {
-        // console.log(message)
+        console.log(message)
     }).catch((err: any) => {
-        // console.log(err)
+        console.log(err)
     })
 }
- 
+
 export class ConttrollersContacts {
     async index(request: Request, response: Response) {
         try {

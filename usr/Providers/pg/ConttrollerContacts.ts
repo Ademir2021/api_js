@@ -17,6 +17,21 @@ export class ConttrollersContacts {
         }
     };
 
+    async select(request: Request, response: Response) {
+        const { user_id } = request.params
+        try {
+            const res_ = await client.query("SELECT * FROM users WHERE  id = '" + user_id + "'")
+            if (res_.rows[0].privilege != 2) {
+                response.json(null)
+            }else{
+                const res = await client.query("SELECT * FROM contacts ")
+                response.json(res.rows);
+            }
+        } catch (err) {
+            console.log("Error Occurred ! " + err)
+        }
+    };
+
     async insert(request: Request, response: Response) {
         try {
             const { name, email, phone, comments } = <TContact>request.body

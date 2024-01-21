@@ -23,6 +23,25 @@ class ConttrollersContacts {
         });
     }
     ;
+    select(request, response) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { user_id } = request.params;
+            try {
+                const res_ = yield connect_1.client.query("SELECT * FROM users WHERE  id = '" + user_id + "'");
+                if (res_.rows[0].privilege != 2) {
+                    response.json(null);
+                }
+                else {
+                    const res = yield connect_1.client.query("SELECT * FROM contacts ");
+                    response.json(res.rows);
+                }
+            }
+            catch (err) {
+                console.log("Error Occurred ! " + err);
+            }
+        });
+    }
+    ;
     insert(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
             try {

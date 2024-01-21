@@ -7,4 +7,5 @@ const routeContact = (0, express_1.Router)();
 exports.routeContact = routeContact;
 const conttrollersContacts = new ConttrollerContacts_1.ConttrollersContacts();
 routeContact.get('/', conttrollersContacts.index);
+routeContact.get('/contacts/:user_id', conttrollersContacts.select);
 routeContact.post('/contact', conttrollersContacts.insert);

@@ -8,9 +8,47 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ConttrollersContacts = void 0;
 const connect_1 = require("../../connect");
+const nodemailer_1 = __importDefault(require("nodemailer"));
+function sendMail(name, email, phone, comments) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let transporter = nodemailer_1.default.createTransport({
+            service: "hotmail",
+            host: "smtp-mail.outlook.com",
+            port: 587,
+            secure: false,
+            auth: {
+                user: "ademir_gre@hotmail.com",
+                pass: "873700xla"
+            },
+            // tls: {
+            //     ciphers: 'SSLv3',
+            // },
+        });
+        yield transporter.sendMail({
+            from: "ademir_gre@hotmail.com",
+            to: "ademir_gre@hotmail.com",
+            cc: "centroserra@gmail.com," + email,
+            subject: "Contato: centroinfo.com.br",
+            html: "<b>Novo contato:</b>"
+                + "<br><b>Cliente</b> " + name
+                + "<br><b>Telefone:</b> " + phone
+                + "<br><b>Email:</b> " + email
+                + "<br><b>Assunto:</b> " + comments
+                + "<br><br><b>Agradecemos pelo seu contato, em breve estaremos em contato!</b>"
+                + "<br><br><b>Atentamente:</b> Ademir Souza de Almeida"
+        }).then((message) => {
+            // console.log(message)
+        }).catch((err) => {
+            // console.log(err)
+        });
+    });
+}
 class ConttrollersContacts {
     index(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -44,17 +82,17 @@ class ConttrollersContacts {
     ;
     insert(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
+            const { name, email, phone, comments } = request.body;
             try {
-                const { name, email, phone, comments } = request.body;
+                sendMail(name, email, phone, comments);
                 yield connect_1.client.query('INSERT INTO contacts(name, email, phone, comments) VALUES (' + "'" + name + "', '" + email + "', '" + phone + "', '" + comments + "');");
                 const res_name = yield connect_1.client.query("SELECT name FROM contacts WHERE name = '" + name + "' LIMIT(1)");
-                response.json(res_name.rows[0].name + 'Seu contato foi registrado com sucesso !');
+                response.json(res_name.rows[0].name + ' Seu contato foi registrado com sucesso !');
             }
             catch (err) {
                 response.json("Error Occurred !" + err);
             }
         });
     }
-    ;
 }
 exports.ConttrollersContacts = ConttrollersContacts;

@@ -46,12 +46,12 @@ class HandleService {
             //     console.log(err)
             // })
             const smtpConfig = smtpTransport({
-                host: "smtp-mail.outlook.com",
                 port: 587,
-                ignoreTLS: false,
+                host: "smtp-mail.outlook.com",
+                // ignoreTLS: false,
                 secure: false,
                 tls: {
-                    rejectUnauthorized: false
+                    rejectUnauthorized: true
                 },
                 auth: {
                     user: user_email,
@@ -61,7 +61,7 @@ class HandleService {
             const transporter = nodemailer_1.default.createTransport(smtpConfig);
             const message = {
                 from: "Ademir <ademir_gre@hotmail.com>",
-                to: "ademir_gre@hotmail.com",
+                to: user_email,
                 subject: "Assunto do Email",
                 text: "Conteúdo do email em texto",
                 html: "<h1>Conteúdo do email em HTML</h1>",

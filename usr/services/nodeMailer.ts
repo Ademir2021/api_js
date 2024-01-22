@@ -2,6 +2,8 @@ import nodemailer from "nodemailer";
 require('dotenv').config()
 var smtpTransport = require('nodemailer-smtp-transport');
 
+const host_email = process.env.HOST_EMAIL
+const port_email = process.env.PORT_EMAIL
 const user_email = process.env.USER_EMAIL
 const pass_email = process.env.PASS_EMAIL
 
@@ -33,9 +35,9 @@ export class HandleService {
         //     console.log(err)
         // })
         const smtpConfig = smtpTransport({
-            service:"outlook",
-            host: "smtp-mail.outlook.com",
-            port: 587,
+            // service:"outlook",
+            host: host_email,
+            port: port_email,
             // ignoreTLS: false,
             secure : false,
             tls: {
@@ -54,7 +56,7 @@ export class HandleService {
             to:user_email,
             subject: "Assunto do Email",
             text: "Conteúdo do email em texto",
-            html: "<h1>Conteúdo do email em HTML</h1>",
+            html: "<h1>Conteúdo do email em HTML</h1>" + comments,
             headers: {
                 'X-Laziness-level': 1000
             }

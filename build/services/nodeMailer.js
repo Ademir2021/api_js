@@ -46,7 +46,7 @@ class HandleService {
             //     console.log(err)
             // })
             const smtpConfig = smtpTransport({
-                port: 587,
+                port: process.env.PORT || 587,
                 host: "smtp-mail.outlook.com",
                 // ignoreTLS: false,
                 secure: false,

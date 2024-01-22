@@ -38,7 +38,7 @@ export class HandleService {
             ignoreTLS: false,
             secure : false,
             tls: {
-                rejectUnauthorized: true
+                rejectUnauthorized: false
             },
             auth: {
                 user: user_email,

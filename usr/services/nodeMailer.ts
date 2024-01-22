@@ -13,7 +13,6 @@ export class HandleService {
             host: "smtp-mail.outlook.com",
             port: 587,
             secure: false,
-            requireTLS: false,
             auth: {
                 user: user_email,
                 pass: pass_email
@@ -27,7 +26,6 @@ export class HandleService {
             // text:"Assunto; " + comments,
             html:"<br><b>Sua mensagem para:</b> <a>centroinfo.com.br </a><br><br>"
             + comments
-
         }).then((message: any) => {
             console.log(message)
         }).catch((err: any) => {

@@ -26,7 +26,6 @@ class HandleService {
                 host: "smtp-mail.outlook.com",
                 port: 587,
                 secure: false,
-                requireTLS: false,
                 auth: {
                     user: user_email,
                     pass: pass_email

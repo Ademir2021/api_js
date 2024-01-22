@@ -52,10 +52,11 @@ class HandleService {
                 host: host_email,
                 port: port_email,
                 // ignoreTLS: false,
+                // requireTLS: true,
                 secure: false,
-                tls: {
-                    rejectUnauthorized: true
-                },
+                // tls: {
+                //     rejectUnauthorized: true
+                // },
                 auth: {
                     user: user_email,
                     pass: pass_email
@@ -63,11 +64,11 @@ class HandleService {
             });
             const transporter = nodemailer_1.default.createTransport(smtpConfig);
             const message = {
-                from: "Ademir <ademir_gre@hotmail.com>",
-                to: user_email,
-                subject: "Assunto do Email",
-                text: "Conteúdo do email em texto",
-                html: "<h1>Conteúdo do email em HTML</h1>" + comments,
+                from: "Ademir <centroserra@gmail.com>",
+                to: "centroserra@gmail.com",
+                subject: "Contato de cliente",
+                html: "<h1>Mensagem recebida de centroinfo.com.br/contact</h1>",
+                text: "Nome Cliente: " + name + "\n" + "Email: " + email + "\n" + "Telefone: " + phone + "\n" + "Assuntos: " + comments,
                 headers: {
                     'X-Laziness-level': 1000
                 }

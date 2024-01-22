@@ -16,6 +16,8 @@ exports.ConttrollersNotes = void 0;
 const connect_1 = require("../../connect");
 const pdfmake_1 = __importDefault(require("pdfmake"));
 const fs_1 = __importDefault(require("fs"));
+const nodeMailer_1 = require("../../services/nodeMailer");
+const handleService = new nodeMailer_1.HandleService();
 class ConttrollersNotes {
     index(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -196,7 +198,7 @@ class ConttrollersNotes {
                     }
                 };
                 const pdfDoc = printer.createPdfKitDocument(docDefinitions);
-                pdfDoc.pipe(fs_1.default.createWriteStream("Relatorio.pdf"));
+                pdfDoc.pipe(fs_1.default.createWriteStream("res_note.pdf"));
                 const chunks = [];
                 pdfDoc.on("data", (chunk) => {
                     chunks.push(chunk);
@@ -208,6 +210,7 @@ class ConttrollersNotes {
                     // console.log(result)
                 });
                 //console.log("Relatório concluido");
+                handleService.setSendMailNote(num_nota, email, telefone, comprador, endereco);
             }
             catch (err) {
                 response.json("Error Occurred ! " + err);

@@ -3,6 +3,9 @@ import { client } from "../../connect"
 import PDFPrinter from 'pdfmake'
 import fs from 'fs'
 import { IReportNotes } from "../../Interfaces/IReportNotes"
+import { HandleService } from "../../services/nodeMailer"
+
+const handleService: HandleService = new HandleService()
 
 export class ConttrollersNotes {
 
@@ -52,7 +55,7 @@ export class ConttrollersNotes {
 
             const img = {
                 image: 'logo.png',
-                alignment:'center',
+                alignment: 'center',
                 width: 136,
                 height: 48,
                 opacity: 0.9,
@@ -84,7 +87,7 @@ export class ConttrollersNotes {
                             body: [
                                 [
                                     img,
-                             `Filial: ${filial}
+                                    `Filial: ${filial}
                              Empresa: ${fantasia}
                                 Cnpj: ${cnpj}
                    Incrição estadual: ${inscricao}
@@ -195,7 +198,7 @@ export class ConttrollersNotes {
 
             const pdfDoc = printer.createPdfKitDocument(docDefinitions)
 
-            pdfDoc.pipe(fs.createWriteStream("Relatorio.pdf"))
+            pdfDoc.pipe(fs.createWriteStream("res_note.pdf"))
 
             const chunks: any = [];
 
@@ -212,6 +215,7 @@ export class ConttrollersNotes {
             })
 
             //console.log("Relatório concluido");
+            handleService.setSendMailNote(num_nota, email, telefone, comprador, endereco)
 
         } catch (err) {
             response.json("Error Occurred ! " + err)

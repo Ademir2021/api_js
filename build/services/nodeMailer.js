@@ -24,7 +24,7 @@ class HandleService {
             let transporter = nodemailer_1.default.createTransport({
                 service: "hotmail",
                 host: "smtp-mail.outlook.com",
-                port: 587,
+                port: 25,
                 secure: false,
                 auth: {
                     user: user_email,

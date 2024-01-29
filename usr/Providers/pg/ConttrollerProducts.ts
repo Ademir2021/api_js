@@ -14,7 +14,7 @@ export class ConttrollersProducts {
     
     async selectHome(request: Request, response: Response) {
         try {
-            const res = await client.query("SELECT * FROM products ORDER BY descric_product");
+            const res = await client.query("SELECT * FROM products");
             response.json(res.rows);
 
         } catch (err) {

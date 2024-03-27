@@ -53,22 +53,22 @@ export class ConttrollersSales {
 
     async insert(request: Request, response: Response) {
         try {
-            const itens: TSale[] = <TSale[]>request.body
+            const sale: TSale[] = <TSale[]>request.body
             await client.query
                 ('INSERT INTO sales(fk_name_pers, disc_sale, fk_name_filial, fk_name_user) VALUES ('
                     + "'"
-                    + itens[0].fk_name_pers
+                    + sale[0].fk_name_pers
                     + "','"
-                    + itens[0].disc_sale
+                    + sale[0].disc_sale
                     + "','"
-                    + itens[0].filial
+                    + sale[0].filial
                     + "','"
-                    + itens[0].user_id
+                    + sale[0].user_id
                     + "')")
             const res_num_sale = await client.query
                 ("SELECT MAX(id_sale) FROM sales");
             const num_sale: number = res_num_sale.rows[0].max;
-            for (let i = 1; itens.length > i; i++) {
+            for (let i = 1; sale[0].itens.length > i; i++) {
                 // const sum_total_item: number = itens[i].amount * itens[i].valor;
                 const sum_total_item: number = 0;
                 await client.query
@@ -76,11 +76,11 @@ export class ConttrollersSales {
                         + "'"
                         + num_sale
                         + "','"
-                        + itens[i].item
+                        + sale[0].itens[i].item
                         + "','"
-                        + itens[i].amount
+                        + sale[0].itens[i].amount
                         + "','"
-                        + itens[i].valor
+                        + sale[0].itens[i].valor
                         + "','"
                         + sum_total_item
                         + "')")

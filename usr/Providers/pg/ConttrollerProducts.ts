@@ -11,12 +11,11 @@ export class ConttrollersProducts {
             console.log("Error Occurred !" + err)
         }
     };
-    
+
     async selectHome(request: Request, response: Response) {
         try {
             const res = await client.query("SELECT * FROM products");
             response.json(res.rows);
-
         } catch (err) {
             console.log("Error Ocurred ! " + err)
         }
